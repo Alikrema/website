@@ -55,4 +55,56 @@ document.addEventListener('DOMContentLoaded', function() {
         // Start the typing effect if on the home page and elements exist
         setTimeout(type, newTextDelay / 2);
     }
+
+    // Spotlight effect code
+    const heroImageForSpotlight = document.querySelector('.hero-image');
+    const landingImageForSpotlight = document.querySelector('.hero-image img');
+    const spotlightOverlay = document.getElementById('spotlight-overlay');
+    const spotlightRadius = 120; // Radius of the spotlight effect - DOUBLED
+
+    if (heroImageForSpotlight && landingImageForSpotlight && spotlightOverlay) {
+        const updateSpotlight = (e) => {
+            // New gradient for a softer "beam of light"
+            spotlightOverlay.style.background = 
+                `radial-gradient(circle ${spotlightRadius}px at ${e.clientX}px ${e.clientY}px, 
+                rgba(0,0,0,0) 0%, /* Fully transparent at the center */
+                rgba(0,0,0,0.85) ${spotlightRadius * 0.7}px, /* Fades to mostly dark */
+                rgba(0,0,0,0.95) ${spotlightRadius}px)`; /* Full overlay darkness at radius edge */
+        };
+
+        landingImageForSpotlight.addEventListener('mouseenter', () => {
+            spotlightOverlay.classList.add('active');
+            // heroImageForSpotlight.classList.add('spotlight-active'); // REMOVED - hero image is now also under the overlay
+            
+            setTimeout(() => {
+              document.addEventListener('mousemove', updateSpotlight);
+            }, 50); 
+        });
+
+        landingImageForSpotlight.addEventListener('mouseleave', () => {
+            spotlightOverlay.classList.remove('active');
+            // heroImageForSpotlight.classList.remove('spotlight-active'); // REMOVED
+            document.removeEventListener('mousemove', updateSpotlight);
+            spotlightOverlay.style.background = 'rgba(0,0,0,0)'; // Reset background immediately
+        });
+    }
+
+    // Lore icon hover effect
+    const loreIconImage = document.getElementById('lore-icon-img');
+    if (loreIconImage) {
+        const originalLoreIconSrc = '/assets/img/me.png'; // Path to your original lore icon
+        const hoverLoreIconSrc = '/assets/img/me-2.png';    // Path to your hover lore icon (me-2.png)
+
+        // Preload the hover image
+        const preloadHoverLoreIcon = new Image();
+        preloadHoverLoreIcon.src = hoverLoreIconSrc;
+
+        loreIconImage.addEventListener('mouseenter', function() {
+            this.src = hoverLoreIconSrc;
+        });
+
+        loreIconImage.addEventListener('mouseleave', function() {
+            this.src = originalLoreIconSrc;
+        });
+    }
 });
