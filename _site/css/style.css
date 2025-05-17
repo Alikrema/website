@@ -181,22 +181,54 @@ a:hover {
 }
 
 /* Style for the landing page image to ensure it's responsive */
-.landing-hero img {
-    width: 300px; /* Fixed width */
-    height: 300px; /* Same as width to ensure circle */
-    object-fit: cover; /* Maintain aspect ratio while filling dimensions */
-    border-radius: 50%; /* Make image perfectly circular */
-    margin-top: 20px;
+.landing-hero img { /* This will now target the image within .hero-image */
+    width: 100%;     /* Image takes full width of its container */
+    height: 100%;    /* Image takes full height of its container */
+    object-fit: cover; /* Scales the image to maintain its aspect ratio while filling the element's entire content box. If the image's aspect ratio does not match the aspect ratio of its box, then the object will be clipped to fit. */
+    display: block; 
+    /* border-radius: 50%;  No longer needed here if .hero-image has it and overflow:hidden */
 }
 
 /* Remove inline styles from index.html and manage here */
 .landing-hero {
-    text-align: center;
+    /* text-align: center; Removed, alignment handled by flex/text blocks */
     padding: 50px 20px;
+    display: flex; /* Make landing-hero a flex container */
+    flex-direction: column; /* Stack hero-content-wrapper and social-links vertically */
+    align-items: center; /* Center children horizontally */
+}
+
+.hero-content-wrapper {
+    display: flex;
+    align-items: center; /* Vertically align text and image */
+    gap: 40px; /* Increased space between text and image */
+    width: 100%; 
+    max-width: 800px; /* Increased max-width of the text+image block */
+    margin-bottom: 20px; 
+}
+
+.hero-text {
+    flex: 1; 
+    text-align: left; 
+}
+
+.hero-text h1 {
+    margin-top: 0; 
+    margin-bottom: 10px; /* Adjusted from 8px to a slightly larger default */
+    font-size: 3.5em; /* Increased font size for name */
+}
+
+.hero-image {
+    flex-shrink: 0; 
+    width: 200px; /* Increased image width */
+    height: 200px; /* Increased image height */
+    border-radius: 50%; 
+    overflow: hidden; 
 }
 
 .social-links {
-    margin-top: 20px;
+    margin-top: 20px; /* This is fine, or adjust if hero-content-wrapper margin-bottom is enough */
+    text-align: center; /* Keep social links centered */
 }
 
 .social-links a {
@@ -207,4 +239,56 @@ a:hover {
 
 .social-links a:hover {
     text-decoration: underline;
+}
+
+/* Typing Effect Styles */
+#job-title-typed-container {
+    font-size: 1.5em; /* Increased font size for job title */
+}
+
+.typed-cursor {
+    display: inline-block;
+    width: 2px; /* Width of the cursor */
+    height: 1.1em; /* Height, relative to font size */
+    background-color: #4A3B31; /* Cursor color (your dark brown) */
+    margin-left: 3px;
+    opacity: 1;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Responsive adjustments for landing hero */
+@media (max-width: 768px) {
+    .hero-content-wrapper {
+        flex-direction: column; /* Stack text and image vertically */
+        gap: 20px; /* Adjust gap for stacked layout */
+        max-width: 90%; /* Allow it to be wider on smaller screens if needed */
+    }
+
+    .hero-text {
+        text-align: center; /* Center text when stacked */
+        order: 2; /* Ensure text is below image */
+    }
+
+    .hero-text h1 {
+        font-size: 2.5em; /* Slightly smaller font for stacked layout */
+    }
+
+    #job-title-typed-container {
+        font-size: 1.2em; /* Slightly smaller font for stacked layout */
+    }
+
+    .hero-image {
+        order: 1; /* Ensure image is on top */
+        width: 180px; /* Optionally adjust image size for smaller screens */
+        height: 180px;
+    }
+
+    .social-links {
+        margin-top: 30px; /* Adjust spacing if needed */
+    }
 }
