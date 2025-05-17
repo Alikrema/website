@@ -1,0 +1,210 @@
+/* css/style.css */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0; /* Override default browser margin */
+    display: flex;
+    flex-direction: column;
+    background-color: #FAF9F6; /* A nice off-white/light cream */
+    color: #4A3B31; /* A dark brown for general text */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Simple sans-serif for now */
+    line-height: 1.6;
+    padding: 20px; /* Some basic padding for the overall page */
+    padding-bottom: 80px; /* Add padding to the bottom to prevent content from being hidden by the nav */
+}
+
+header,
+footer {
+    flex-shrink: 0; /* Prevent header/footer from shrinking */
+    /* Basic styling, you can expand this if they have more content */
+    width: 100%;
+    text-align: center; /* Example alignment */
+    padding: 10px 0; /* Example padding */
+}
+
+header:empty,
+footer:empty {
+    padding: 0; /* Remove padding if header/footer are empty */
+}
+
+/* General content styling for spaciousness */
+main {
+    flex-grow: 1; /* Allow main to take up available vertical space */
+    display: flex; /* Make main a flex container as well */
+    flex-direction: column; /* Stack children vertically by default */
+    width: 100%; /* Ensure it tries to take full width before max-width applies */
+    max-width: 800px; /* Limit width for readability on general pages */
+    margin-left: auto;  /* Center the main block horizontally */
+    margin-right: auto; /* Center the main block horizontally */
+    padding: 20px; /* Padding for content within main on general pages */
+}
+
+main.page-home {
+    justify-content: center; /* Vertically center content (the .landing-hero div) */
+    align-items: center;   /* Horizontally center content (the .landing-hero div) */
+    padding: 0; /* Remove default main padding, .landing-hero has its own */
+    /* max-width: 800px; /* This is inherited, which is fine for the hero block */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Georgia', Times, serif; /* A classic serif for headings */
+    color: #3B2E26; /* A slightly darker brown for headings */
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+a {
+    color: #795548; /* A lighter, warm brown for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Timeline Styles */
+.timeline {
+    position: relative;
+    margin-top: 20px;
+    padding-left: 40px; /* Space for the timeline line and markers */
+}
+
+.timeline::before { /* This is the vertical timeline bar */
+    content: '';
+    position: absolute;
+    left: 10px; /* Adjust to align with markers */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #A1887F; /* A medium brown for the timeline bar */
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px; /* Spaciousness between items */
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-item__marker {
+    position: absolute;
+    left: -30px; /* (padding-left of .timeline - marker-width/2 - bar-width/2) - adjust as needed */
+    top: 5px; /* Align with text or as desired */
+    width: 12px;
+    height: 12px;
+    background-color: #795548; /* Link brown for markers */
+    border-radius: 50%;
+    border: 2px solid #FAF9F6; /* Match body background to "punch out" the circle */
+}
+
+.timeline-item__content {
+    position: relative;
+    /* background-color: #fff; Optional: if you want a slightly different background for items */
+    /* padding: 15px; */
+    /* border-radius: 4px; */
+    /* box-shadow: 0 1px 3px rgba(0,0,0,0.05); Optional subtle shadow */
+}
+
+.timeline-item__date {
+    font-size: 0.9em;
+    color: #795548; /* Link brown for dates */
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.timeline-item__title {
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.timeline-item__description p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.timeline-item__description p:last-child {
+    margin-bottom: 0;
+}
+
+/* Sticky Bottom Navigation */
+.sticky-bottom-nav {
+    position: fixed;
+    bottom: 20px; /* Distance from the bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Center the nav bar */
+    background-color: #F0EBE0; /* Slightly darker creamy background */
+    border: 2px solid #4A3B31; /* Solid dark brown border */
+    border-radius: 25px; /* Rounded corners */
+    padding: 6px 20px; /* Slimmer vertically, wider horizontally */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.sticky-bottom-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Use flexbox for easy alignment */
+}
+
+.sticky-bottom-nav ul li {
+    margin: 0 10px; /* Spacing between icons */
+}
+
+.sticky-bottom-nav ul li a {
+    font-size: 1.6em; /* Adjusted icon size */
+    color: #4A3B31; /* Dark brown icons to contrast with lighter bar */
+    text-decoration: none;
+    padding: 5px; /* Keep some padding around icons */
+    display: block;
+}
+
+.sticky-bottom-nav ul li a {
+    transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease; /* Add transition to base state */
+}
+
+.sticky-bottom-nav ul li a:hover,
+.sticky-bottom-nav ul li a:focus {
+    color: #A1887F; /* Medium brown for hover, from your timeline */
+    text-shadow: 0 0 5px #846918; /* Add a subtle glow effect */
+    transform: translateY(-3px) scale(1.1); /* Move up and scale slightly */
+}
+
+/* Style for the landing page image to ensure it's responsive */
+.landing-hero img {
+    width: 300px; /* Fixed width */
+    height: 300px; /* Same as width to ensure circle */
+    object-fit: cover; /* Maintain aspect ratio while filling dimensions */
+    border-radius: 50%; /* Make image perfectly circular */
+    margin-top: 20px;
+}
+
+/* Remove inline styles from index.html and manage here */
+.landing-hero {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    margin: 0 10px;
+    /* color: #795548; /* Link color already defined globally */
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
