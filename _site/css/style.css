@@ -375,6 +375,11 @@ a:hover {
 
 /* Responsive adjustments for landing hero */
 @media (max-width: 768px) {
+    body {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     .hero-content-wrapper {
         flex-direction: column; /* Stack text and image vertically */
         gap: 20px; /* Adjust gap for stacked layout */
@@ -650,10 +655,68 @@ a:hover {
         margin-bottom: 20px;
         padding-bottom: 10px;
     }
+
+    /* Blog Post Specific Adjustments for 768px */
+    main.post-page { /* Assuming a class 'post-page' is added to main on blog post pages */
+        padding: 20px 15px; /* More T/B, 15px L/R */
+        max-width: 100%; /* Allow content to use full width */
+    }
+
+    /* New rules to zero out nested padding within main.post-page */
+    main.post-page article.post,
+    main.post-page .post-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .post-title {
+        font-size: 1.8em; /* Slightly smaller title */
+        overflow-wrap: break-word; /* Add word wrapping */
+        word-wrap: break-word; /* Alias for older browsers */
+    }
+
+    .post-body {
+        font-size: 0.95em; /* Slightly smaller body text */
+    }
+
+    .post-body p { /* Add word wrapping for paragraphs */
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    .post-body h2 {
+        font-size: 1.5em;
+    }
+
+    .post-body h3 {
+        font-size: 1.3em;
+    }
+
+    /* Simplified styling for images and preformatted text */
+    .post-body img,
+    .post-body pre {
+        margin-left: 0; 
+        margin-right: 0;
+        max-width: 100%; 
+        /* border-radius: 0; REMOVED - let default apply or inherit */
+    }
+
+    .post-body img {
+      max-width: 100%; /* Ensure images don't overflow their container */
+      height: auto; /* Maintain aspect ratio */
+      margin-left: auto; /* Center images if they are smaller than container */
+      margin-right: auto;
+      display: block;
+    }
 }
 
 /* Even smaller screens */
 @media (max-width: 480px) {
+    body {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     .post-title {
         font-size: 1.8em;
     }
@@ -679,6 +742,53 @@ a:hover {
         max-width: 100%;
         height: auto;
     }
+
+    /* Blog Post Specific Adjustments for 480px */
+    main.post-page { /* Assuming a class 'post-page' is added to main on blog post pages */
+        padding: 15px 10px; /* More T/B, 10px L/R */
+    }
+
+    /* New rules to zero out nested padding within main.post-page */
+    main.post-page article.post,
+    main.post-page .post-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .post-title {
+        font-size: 1.5em; /* Even smaller title */
+        /* overflow-wrap will be inherited from 768px styles */
+    }
+
+    .post-body {
+        font-size: 0.9em; /* Even smaller body text */
+        line-height: 1.5;
+        /* overflow-wrap on p will be inherited */
+    }
+
+    .post-body h2 {
+        font-size: 1.3em;
+    }
+
+    .post-body h3 {
+        font-size: 1.1em;
+    }
+
+    /* Simplified styling for images and preformatted text */
+    .post-body img,
+    .post-body pre {
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
+    }
+
+    .post-body img {
+      max-width: 100%;
+      height: auto;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
 }
 
 /* Page Title */
@@ -703,6 +813,7 @@ a:hover {
     color: #795548;
     font-size: 0.8em;
     padding: 3px 8px;
+    margin-right: 8px;
     border-radius: 12px;
     font-weight: normal;
     font-style: normal;
@@ -995,22 +1106,11 @@ a:hover {
 }
 
 .resume-button {
-    /* display: inline-flex; .. moved to .action-button */
     background-color: #795548;
-    /* color: white; .. moved to .action-button */
-    /* padding: 12px 24px; .. moved to .action-button */
-    /* border-radius: 30px; .. moved to .action-button */
-    /* text-decoration: none; .. moved to .action-button */
-    /* font-weight: bold; .. moved to .action-button */
-    /* transition: all 0.3s ease; .. moved to .action-button */
-    /* box-shadow: 0 2px 5px rgba(0,0,0,0.2); .. moved to .action-button */
 }
 
 .resume-button:hover {
     background-color: #5D4037;
-    /* transform: translateY(-2px); .. moved to .action-button:hover */
-    /* box-shadow: 0 4px 8px rgba(0,0,0,0.2); .. moved to .action-button:hover */
-    /* text-decoration: none; .. moved to .action-button:hover */
 }
 
 .button-icon {
@@ -1019,21 +1119,12 @@ a:hover {
 }
 
 .calendar-button {
-    /* display: inline-flex; .. moved to .action-button */
     background-color: #A1887F; /* Slightly different color for differentiation */
-    /* color: white; .. moved to .action-button */
-    /* padding: 12px 24px; .. moved to .action-button */
-    /* border-radius: 30px; .. moved to .action-button */
-    /* text-decoration: none; .. moved to .action-button */
-    /* font-weight: bold; .. moved to .action-button */
-    /* transition: all 0.3s ease; .. moved to .action-button */
     margin-top: 0; /* Remove specific margin-top if it was just for when it was standalone */
 }
 
 .calendar-button:hover {
     background-color: #8D6E63;
-    /* transform: translateY(-2px); .. moved to .action-button:hover */
-    /* text-decoration: none; .. moved to .action-button:hover */
 }
 
 /* Responsive adjustments for Contact page */
