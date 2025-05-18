@@ -4,42 +4,46 @@ layout: base.njk
 permalink: /lore/index.html
 ---
 
-# About Me
+## Who I Am
 
-Hello! This is my personal portfolio website, built with Eleventy.
+(This is where your engaging bio will go. Write a paragraph or two that introduces yourself, your core passions, and what drives you. You can touch on your journey from STEM to software, your love for teaching, and your podcast if you like, setting the stage for the detailed story below.)
 
-I'm excited to share my projects and experiences here.
+## My Journey: Weaving Through Chapters
 
-## My Lore - A Journey
+(Here, you can have an optional introductory paragraph to your timeline/story, setting the tone.)
 
 <div class="timeline">
   {% from "timeline-item.njk" import timelineItem %}
-  
-  {{ timelineItem(
-    "2010",
-    "Early Beginnings",
-    "<p>Started exploring the world of computers and code.</p>"
+
+{{ timelineItem(
+    "September 2016",
+    "Transformation",
+    "<p>Location: 6th of October City, Egypt</p><p>This is where everything started. This is where my life changed forever.</p>",
+    "/assets/img/clean.jpeg",
+    "Personal",
+    "/assets/img/personal-icon.svg"
   ) }}
 
 {{ timelineItem(
-    "2015 - 2019",
-    "University Studies",
-    "<p>Graduated with a degree in Computer Science. This period included [mention a specific award or achievement if you like].</p>"
+    "September 2016",
+    "Transformation",
+    "<p>Location: 6th of October City, Egypt</p><p>This is where everything started. This is where my life changed forever.</p>",
+    "/assets/img/clean.jpeg",
+    "Personal",
+    "/assets/img/personal-icon.svg"
   ) }}
 
 {{ timelineItem(
-    "2020",
-    "First Major Project",
-    "<p>Launched my first significant software project, which taught me a lot about X, Y, and Z.</p>"
+    "September 2016",
+    "Transformation",
+    "<p>Location: 6th of October City, Egypt</p><p>This is where everything started. This is where my life changed forever.</p>",
+    "/assets/img/clean.jpeg",
+    "Personal",
+    "/assets/img/personal-icon.svg"
   ) }}
+
+  <!-- More timeline items will be added here -->
 
 </div>
 
-## My Skills
-
-- Web Development
-- Eleventy
-- JavaScript
-- (And more to come!)
-
-You can find me on [GitHub](https://github.com) (replace with your actual GitHub link).
+<!-- More content can follow after the timeline -->

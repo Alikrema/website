@@ -89,6 +89,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Home icon hover effect
+    const homeIconImage = document.getElementById('home-icon-img');
+    if (homeIconImage) {
+        const originalHomeIconSrc = '/assets/img/home.png'; 
+        const hoverHomeIconSrc = '/assets/img/home-open.png';
+
+        const preloadHoverHomeIcon = new Image();
+        preloadHoverHomeIcon.src = hoverHomeIconSrc;
+
+        homeIconImage.addEventListener('mouseenter', function() {
+            this.src = hoverHomeIconSrc;
+        });
+        homeIconImage.addEventListener('mouseleave', function() {
+            this.src = originalHomeIconSrc;
+        });
+    }
+
+    // Blogs icon hover effect
+    const blogsIconImage = document.getElementById('blogs-icon-img');
+    if (blogsIconImage) {
+        const originalBlogsIconSrc = '/assets/img/blog.png'; 
+        const hoverBlogsIconSrc = '/assets/img/blog-open.png';
+
+        const preloadHoverBlogsIcon = new Image();
+        preloadHoverBlogsIcon.src = hoverBlogsIconSrc;
+
+        blogsIconImage.addEventListener('mouseenter', function() {
+            this.src = hoverBlogsIconSrc;
+        });
+        blogsIconImage.addEventListener('mouseleave', function() {
+            this.src = originalBlogsIconSrc;
+        });
+    }
+
     // Lore icon hover effect
     const loreIconImage = document.getElementById('lore-icon-img');
     if (loreIconImage) {
@@ -105,6 +139,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
         loreIconImage.addEventListener('mouseleave', function() {
             this.src = originalLoreIconSrc;
+        });
+    }
+
+    // Contact icon hover effect
+    const contactIconImage = document.getElementById('contact-icon-img');
+    if (contactIconImage) {
+        const originalContactIconSrc = '/assets/img/contact.png'; 
+        const hoverContactIconSrc = '/assets/img/contact-open.png';
+
+        const preloadHoverContactIcon = new Image();
+        preloadHoverContactIcon.src = hoverContactIconSrc;
+
+        contactIconImage.addEventListener('mouseenter', function() {
+            this.src = hoverContactIconSrc;
+        });
+        contactIconImage.addEventListener('mouseleave', function() {
+            this.src = originalContactIconSrc;
         });
     }
 });
