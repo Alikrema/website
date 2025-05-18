@@ -9,7 +9,7 @@ isLookingForJob: true # Easily switchable: true or false
   <h1 class="page-title">Contact Me</h1>
   
   <section class="contact-section">
-    <h2>Current Status <span class="status-indicator {{ 'status-indicator--looking' if isLookingForJob else 'status-indicator--not-looking' }}"></span></h2>
+    <h2>Status <span class="status-indicator {{ 'status-indicator--looking' if isLookingForJob else 'status-indicator--not-looking' }}"></span></h2>
     <div class="status-container">
       <p>I am currently open to new opportunities in software development, with a focus on full-stack web development. I'm particularly interested in roles that involve [REPLACE: your specific interests/technologies like React, Node.js, etc.].</p>
       

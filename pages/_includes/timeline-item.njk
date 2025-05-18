@@ -1,28 +1,29 @@
 {# pages/_includes/timeline-item.njk #}
-{%- macro timelineItem(date, title, description, imageSrc, tagText, tagIconSrc) -%}
+{%- macro timelineItem(date, title, description, imageSrc, tagText, tagIconSrc, imageContainerClass="") -%}
+{% set tagClass = "timeline-item__tag--" + (tagText | lower | replace(" ", "-") | replace("&", "and")) %}
 <div class="timeline-item">
     <div class="timeline-item__content">
         <div class="timeline-item__text-content">
             <div class="timeline-item__header">
                 <h3 class="timeline-item__title">{{ title }}</h3>
                 {%- if tagText and tagIconSrc -%}
-                <div class="timeline-item__tag">
+                <div class="timeline-item__tag {{ tagClass }}">
                     <img src="{{ tagIconSrc }}" alt="{{ tagText }} icon" class="timeline-item__tag-icon">
                     <span>{{ tagText }}</span>
                 </div>
                 {%- elif tagText -%}
-                <div class="timeline-item__tag">
+                <div class="timeline-item__tag {{ tagClass }}">
                     <span>{{ tagText }}</span>
                 </div>
                 {%- endif -%}
             </div>
-            {# <p class="timeline-item__date">{{ date }}</p> #}
+            <p class="timeline-item__date">{{ date }}</p>
             <div class="timeline-item__description">
                 {{ description | safe }}
             </div>
         </div>
         {%- if imageSrc -%}
-        <div class="timeline-item__image-container">
+        <div class="timeline-item__image-container {{ imageContainerClass }}">
             <img src="{{ imageSrc }}" alt="{{ title }} - image" class="timeline-item__image">
         </div>
         {%- endif -%}

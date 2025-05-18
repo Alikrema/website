@@ -17,7 +17,7 @@ body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Simple sans-serif for now */
     line-height: 1.6;
     padding: 20px; /* Some basic padding for the overall page */
-    padding-bottom: 80px; /* Add padding to the bottom to prevent content from being hidden by the nav */
+    padding-bottom: 100px; /* Increased to prevent content from being hidden by the nav */
 }
 
 header,
@@ -43,7 +43,7 @@ main {
     max-width: 800px; /* Limit width for readability on general pages */
     margin-left: auto;  /* Center the main block horizontally */
     margin-right: auto; /* Center the main block horizontally */
-    padding: 20px; /* Padding for content within main on general pages */
+    padding: 20px 20px 100px; /* Padding for content within main, increased bottom padding */
 }
 
 main.page-home {
@@ -135,6 +135,19 @@ a:hover {
     display: block;
 }
 
+/* Specific styles for emblem images in timeline */
+.timeline-item__image-container--emblem {
+    width: 200px; /* Increased width for emblems */
+    /* override default flex-shrink if necessary, but usually 0 is fine */
+    align-self: center; /* Optional: vertically center the emblem container if text is short */
+}
+
+.timeline-item__image-container--emblem .timeline-item__image {
+    max-height: none; /* Allow emblem to define its own height based on width and aspect ratio */
+    object-fit: contain; /* Ensure the whole emblem is visible, no cropping */
+    border-radius: 0; /* Optional: emblems often look better without border-radius */
+}
+
 .timeline-item__date {
     font-size: 0.9em;
     color: #795548; /* Link brown for dates */
@@ -175,39 +188,58 @@ a:hover {
     margin-right: 5px; /* Space between icon and text */
 }
 
-/* Styles for the new header containing title and tag */
-.timeline-item__header {
-    display: flex;
-    align-items: center; /* Vertically align title and tag, baseline is often good too */
-    flex-wrap: wrap; /* Allow tag to wrap if not enough space */
-    gap: 10px;          /* Space between title and tag */
-    margin-bottom: 10px; /* Space between this header block and the description below */
+/* Styles for category-specific tags */
+.timeline-item__tag--work {
+    background-color: #e0f2f7; /* Light Blue */
+    color: #0077c2; /* Dark Blue */
+    border: 1px solid #0077c2;
 }
 
-/* Adjustments for title and tag when inside the header */
-.timeline-item__header .timeline-item__title {
-    margin-bottom: 0; /* Remove bottom margin as it's now a flex item */
-    /* Retain margin-top: 0 from existing styles */
+.timeline-item__tag--teaching {
+    background-color: #e6f4e3; /* Light Green */
+    color: #38761d; /* Dark Green */
+    border: 1px solid #38761d;
 }
 
-.timeline-item__header .timeline-item__tag {
-    margin-bottom: 0; /* Remove bottom margin as it's now a flex item */
-    /* The tag's existing display: inline-flex will work well here. */
+.timeline-item__tag--mentorship {
+    background-color: #e0f7f7; /* Light Cyan */
+    color: #00796b; /* Dark Cyan */
+    border: 1px solid #00796b;
 }
 
-/* Timeline Year Heading Styles */
-.timeline-year-heading {
-    font-size: 2em; /* Make it prominent */
-    color: #3B2E26; /* Dark brown, like other headings */
-    margin-top: 40px; /* Space above the year heading */
-    margin-bottom: 20px; /* Space below the year heading, before items */
-    padding-left: 10px; /* Align roughly with timeline items, adjust as needed */
-    position: relative; /* For potential future pseudo-elements if needed */
+.timeline-item__tag--project {
+    background-color: #fff3e0; /* Light Orange */
+    color: #e65100; /* Dark Orange */
+    border: 1px solid #e65100;
 }
 
-.timeline-year-heading:first-of-type {
-    margin-top: 20px; /* Less top margin for the very first year heading */
+.timeline-item__tag--education {
+    background-color: #f3e5f5; /* Light Purple */
+    color: #6a1b9a; /* Dark Purple */
+    border: 1px solid #6a1b9a;
 }
+
+.timeline-item__tag--award {
+    background-color: #fffde7; /* Light Yellow */
+    color: #f57f17; /* Dark Gold/Yellow */
+    border: 1px solid #f57f17;
+}
+
+/* Timeline Year Heading Styles - Commenting out as they are no longer used */
+/*
+div.timeline > h2 {
+    font-size: 2em;
+    color: #3B2E26;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    position: relative;
+}
+
+div.timeline > h2:first-of-type {
+    margin-top: 20px;
+}
+*/
 
 /* Sticky Bottom Navigation */
 .sticky-bottom-nav {
@@ -378,6 +410,11 @@ a:hover {
     body {
         padding-left: 0;
         padding-right: 0;
+        padding-bottom: 75px; /* Increased to accommodate smaller nav and its offset */
+    }
+
+    main { /* Adding specific padding for main on smaller screens */
+        padding-bottom: 75px;
     }
 
     .hero-content-wrapper {
@@ -465,7 +502,7 @@ a:hover {
 
     /* If you have body padding-bottom for the nav, adjust it too */
     body {
-        padding-bottom: 60px; /* Reduced from 80px to accommodate smaller nav */
+        padding-bottom: 75px; /* Increased to accommodate smaller nav and its offset */
     }
 }
 
@@ -1219,4 +1256,125 @@ a:hover {
         font-size: 0.8em;
         padding: 4px 8px;
     }
+}
+
+/* New Two-Column Layout for Lore Page - REMOVING THESE STYLES */
+/*
+.lore-layout {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 40px; 
+    margin-top: 30px;
+}
+
+.lore-column {
+    flex: 1; 
+    min-width: 300px; 
+}
+
+.lore-column h2 {
+    font-size: 1.8em; 
+    color: #3B2E26;
+    margin-top: 0; 
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #F0EBE0; 
+}
+*/
+
+/* Styles for the new header containing title and tag */
+.timeline-item__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.timeline-item__header .timeline-item__title {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.timeline-item__header .timeline-item__tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: #E0E0E0;
+    color: #333;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    margin-bottom: 8px;
+}
+
+.timeline-item__header .timeline-item__tag-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+/* Styling for H2 section titles on the Lore page (about.md) */
+/* Markdown H2s usually don't have a specific class, so we might target them based on context if needed */
+/* For now, let's assume global H2 styling is sufficient or we add a more specific selector later if needed. */
+/* If pages/about.md wraps these sections in divs, we could do: */
+/* .about-page-section h2 { ... } */
+
+/* Let's check global H2 styles. The default H2 is: */
+/* h1, h2, h3, h4, h5, h6 {
+    font-family: 'Georgia', Times, serif; 
+    color: #3B2E26; 
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+} */
+/* This might be okay, but .page-title has a border. Let's make them a bit more distinct. */
+/* For the H2s generated from ## in about.md: */
+main > h2 { /* Assuming these H2s are direct children of main in about.md's rendered output */
+    font-family: 'Georgia', Times, serif;
+    color: #3B2E26;
+    font-size: 2.2em; /* Prominent, but maybe less than main page-title */
+    margin-top: 40px; /* More top space */
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #F0EBE0; /* Lighter border than page-title */
+}
+
+main > h2:first-of-type {
+    margin-top: 25px; /* Less top margin for the very first section title */
+}
+
+/* Bio Section Layout */
+.bio-section {
+    display: flex;
+    flex-wrap: wrap-reverse; /* Image can wrap below text on small screens, or use 'wrap' and adjust order */
+    align-items: flex-start; /* Align items to the top */
+    gap: 30px; /* Space between text and image */
+    margin-top: 25px; /* Top margin for the start of the page content */
+    margin-bottom: 50px; /* Space before the next section (e.g., Education) */
+}
+
+.bio-section__text {
+    flex: 1; /* Text takes up available space */
+    min-width: 300px; /* Ensures text has enough space before image wraps */
+}
+
+.bio-section__text h2 {
+    font-family: 'Georgia', Times, serif;
+    color: #3B2E26;
+    font-size: 2.2em;
+    margin-top: 0; /* Remove top margin as .bio-section handles it */
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #F0EBE0; /* Consistent with other section titles */
+}
+
+.bio-section__image-container {
+    flex-shrink: 0; /* Prevent container from shrinking */
+    width: 200px; /* Desired width for the image, same as emblem */
+    align-self: center; /* Attempt to vertically center with the text block */
+}
+
+.bio-section__image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Ensures the whole image is visible without cropping */
+    display: block; /* Remove any extra space below image */
+    border-radius: 8px; /* Optional: slightly rounded corners for the image */
 }
