@@ -11,5 +11,10 @@
   "description": "",
   "dependencies": {
     "@11ty/eleventy": "^3.1.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1",
+    "eleventy-plugin-reading-time": "^0.0.1",
+    "luxon": "^3.6.1"
   }
 }
