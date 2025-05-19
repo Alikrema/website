@@ -3,8 +3,7 @@ name: Deploy Eleventy to GitHub Pages
 on:
   push:
     branches:
-      - main # Or your default branch
-  # Allows you to run this workflow manually from the Actions tab
+      - master
   workflow_dispatch:
 
 permissions:
@@ -26,18 +25,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20" # Specify your Node.js version
+          node-version: "20"
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci # Use 'npm install' if you don't have a package-lock.json
+        run: npm ci
 
       - name: Build with Eleventy
-        run: npx @11ty/eleventy # Or your custom build command
+        run: npx @11ty/eleventy
 
-      # If you have a custom domain, uncomment the next step and create a CNAME file
-      # - name: Create CNAME file
-      #   run: echo "www.yourdomain.com" > _site/CNAME # Replace with your custom domain
+      - name: Create CNAME file
+        run: echo "www.alikrema.com" > _site/CNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
