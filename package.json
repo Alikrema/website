@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "optimize-hero-images": "node .eleventy.img.config.js",
+    "build": "npm run optimize-hero-images && npx @11ty/eleventy",
+    "build:dev": "npm run optimize-hero-images && npx @11ty/eleventy --serve"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +16,7 @@
     "@11ty/eleventy": "^3.1.0"
   },
   "devDependencies": {
+    "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1",
     "eleventy-plugin-reading-time": "^0.0.1",
     "luxon": "^3.6.1"

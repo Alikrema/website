@@ -20,7 +20,7 @@ Activities that bring me joy in life in no certain order:
 - Not writing CSS</p>
 </div>
 <div class="bio-section__image-container">
-<img src="/assets/img/me-2.png" alt="A picture of me">
+{% image "assets/img/me-2.png", "A picture of me" %}
 </div>
 </div>
 
@@ -46,7 +46,7 @@ Activities that bring me joy in life in no certain order:
             </div>
         </div>
         <div class="timeline-item__image-container timeline-item__image-container--emblem">
-            <img src="/assets/img/lore/penn.png" alt="BSE Computer Science, Magna Cum Laude - University of Pennsylvania - image" class="timeline-item__image">
+            {% image "assets/img/lore/penn.png", "BSE Computer Science, Magna Cum Laude - University of Pennsylvania - image", "(max-width: 768px) 100vw, 150px", "timeline-item__image" %}
         </div>
     </div>
 </div>
