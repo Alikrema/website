@@ -5,7 +5,7 @@
     <div class="timeline-item__content">
         <div class="timeline-item__text-content">
             <div class="timeline-item__header">
-                <h3 class="timeline-item__title">{{ title }}</h3>
+                <h3 class="timeline-item__title">{{ title | safe }}</h3>
                 {%- if tagText and tagIconSrc -%}
                 <div class="timeline-item__tag {{ tagClass }}">
                     <img src="{{ tagIconSrc }}" alt="{{ tagText }} icon" class="timeline-item__tag-icon">

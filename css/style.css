@@ -153,6 +153,7 @@ a:hover {
     color: #795548; /* Link brown for dates */
     margin-bottom: 5px;
     font-weight: bold;
+    margin-block-start: 0;
 }
 
 .timeline-item__title {
@@ -1347,7 +1348,7 @@ main > h2:first-of-type {
     align-items: flex-start; /* Align items to the top */
     gap: 30px; /* Space between text and image */
     margin-top: 25px; /* Top margin for the start of the page content */
-    margin-bottom: 50px; /* Space before the next section (e.g., Education) */
+    margin-bottom: 20px; /* Space before the next section (e.g., Education) */
 }
 
 .bio-section__text {
@@ -1377,4 +1378,11 @@ main > h2:first-of-type {
     object-fit: contain; /* Ensures the whole image is visible without cropping */
     display: block; /* Remove any extra space below image */
     border-radius: 8px; /* Optional: slightly rounded corners for the image */
+}
+
+.caption-text {
+    color: #666;
+    font-size: 0.9em;
+    margin: -10px 0 20px 0;
+    font-style: italic;
 }
