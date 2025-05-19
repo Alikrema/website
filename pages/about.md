@@ -36,7 +36,7 @@ permalink: /lore/index.html
         "Software Engineer @ Aydi",
         "<p>Description of your role and achievements at Aydi.</p>",
         "",
-        "Work",
+        "",
         ""
     ) }}
 
@@ -45,7 +45,7 @@ permalink: /lore/index.html
         "Mentor, US College Applications",
         "<p>Details about your mentorship role for 9 students.</p>",
         "",
-        "Mentorship",
+        "",
         ""
     ) }}
 
@@ -54,7 +54,7 @@ permalink: /lore/index.html
         "Backend Course Instructor",
         "<p>Description of your role as a backend course instructor.</p>",
         "",
-        "Teaching",
+        "",
         ""
     ) }}
 
@@ -63,7 +63,7 @@ permalink: /lore/index.html
         "Class Instructor @ University of Pennsylvania",
         "<p>Details about your role as a class instructor.</p>",
         "",
-        "Teaching",
+        "",
         ""
     ) }}
 
@@ -72,7 +72,7 @@ permalink: /lore/index.html
         "Teaching Assistant @ University of Pennsylvania",
         "<p>Details about your TA responsibilities.</p>",
         "",
-        "Teaching",
+        "",
         ""
     ) }}
 
@@ -81,7 +81,7 @@ permalink: /lore/index.html
         "Founder & Host, Overflow Podcast",
         "<p>11 Episodes, ~8000 views. More details about the podcast.</p>",
         "",
-        "Project",
+        "",
         ""
     ) }}
 

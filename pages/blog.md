@@ -25,6 +25,6 @@ permalink: "/blog/index.html" # or just /blog/
       </div>
     </article>
   {%- else -%}
-    <p>No blog posts yet. Check back soon!</p>
+    <p>Coming Soon...  I promise</p>
   {%- endfor -%}
 </div>
