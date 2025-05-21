@@ -158,4 +158,70 @@ document.addEventListener('DOMContentLoaded', function() {
             this.src = originalContactIconSrc;
         });
     }
+
+    // Projects icon hover effect
+    const projectsIconImage = document.getElementById('projects-icon-img');
+    if (projectsIconImage) {
+        const originalProjectsIconSrc = '/assets/img/blog.png'; // Placeholder
+        const hoverProjectsIconSrc = '/assets/img/blog-open.png';    // Placeholder for hover state
+
+        // Preload the hover image
+        const preloadHoverProjectsIcon = new Image();
+        preloadHoverProjectsIcon.src = hoverProjectsIconSrc;
+
+        projectsIconImage.addEventListener('mouseenter', function() {
+            this.src = hoverProjectsIconSrc;
+        });
+
+        projectsIconImage.addEventListener('mouseleave', function() {
+            this.src = originalProjectsIconSrc;
+        });
+    }
+
+    // --- Carousel Logic ---
+    const carouselTrack = document.querySelector('.carousel-track');
+    if (carouselTrack) {
+        const items = Array.from(carouselTrack.children);
+        const nextButton = document.querySelector('.carousel-button.next');
+        const prevButton = document.querySelector('.carousel-button.prev');
+        let currentIndex = 0;
+
+        // Set the width of the track based on the number of items
+        // This assumes each item takes 100% of the container width
+        // carouselTrack.style.width = items.length * 100 + '%';
+
+        function updateCarousel() {
+            carouselTrack.style.transform = 'translateX(-' + currentIndex * 100 + '%)';
+            // Optional: Disable/enable buttons at ends
+            if (prevButton) prevButton.disabled = currentIndex === 0;
+            if (nextButton) nextButton.disabled = currentIndex === items.length - 1;
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                if (currentIndex < items.length - 1) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+        }
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+        }
+        
+        // Initialize
+        if(items.length > 0) {
+             updateCarousel(); // Set initial position and button states
+        } else {
+            // Hide buttons if no items
+            if(nextButton) nextButton.style.display = 'none';
+            if(prevButton) prevButton.style.display = 'none';
+        }
+    }
 });
