@@ -25,8 +25,9 @@
                             <time>{{ date }}</time>
                         {% endif %}
                         
-                        <!-- Debug reading time -->
-                        <span class="post-reading-time"> • {{ content | readingTime }} read</span>
+                        {% if readingTime %}
+                            <span class="post-reading-time"> • {{ readingTime }}</span>
+                        {% endif %}
                         
                         {% if tags.length > 0 %}
                             <div class="post-tags">

@@ -12,7 +12,9 @@ permalink: "/blog/index.html" # or just /blog/
       <h2><a href="{{ post.url | url }}">{{ post.data.title }}</a></h2>
       <div class="post-meta">
         <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
-        <span class="post-reading-time"> • {{ post.templateContent | readingTime }} read</span>
+        {% if post.data.readingTime %}
+          <span class="post-reading-time"> • {{ post.data.readingTime }}</span>
+        {% endif %}
         {% if post.data.tags.length > 1 %}
           <span class="post-tags">
             {% for tag in post.data.tags %}
