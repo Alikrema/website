@@ -7,8 +7,6 @@ permalink: "/blog/stop-fighting-your-babies/"
 readingTime: "3 min read"
 ---
 
-# Stop Fighting Your Babies
-
 ## The Cost of Perfection
 
 I just found out my startup idea has finally been implemented by someone else. It's the best feeling ever, just watching your own potential crumble under fear and indecisiveness. I spent **9 months** running circles in my own head, thinking about every tiny detail on how to make this idea come true. Nine whole months and all I actually **did** was scaffold 10% of a working POC.
