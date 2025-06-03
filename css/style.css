@@ -625,128 +625,7 @@ div.timeline > h2:first-of-type {
     font-size: 0.9em;
 }
 
-/* Responsive adjustments for blog */
-@media (max-width: 768px) {
-    .post-title {
-        font-size: 2em;
-    }
-    
-    .post-body h2 {
-        font-size: 1.6em;
-    }
-    
-    .post-body h3 {
-        font-size: 1.3em;
-    }
-    
-    /* Additional mobile-specific adjustments */
-    .post-content {
-        padding: 0 10px; /* Reduce padding on mobile */
-    }
-    
-    .post-header {
-        margin-bottom: 20px; /* Less margin on mobile */
-        padding-bottom: 10px;
-    }
-    
-    .post-meta {
-        flex-direction: column; /* Stack date, reading time, tags vertically */
-        align-items: flex-start;
-        gap: 5px;
-    }
-    
-    .post-reading-time {
-        margin-left: 0; /* Remove left margin since items are stacked */
-    }
-    
-    .post-tags {
-        margin-left: 0;
-        margin-top: 5px;
-    }
-    
-    .post-body {
-        line-height: 1.6; /* Slightly reduced line height for mobile */
-    }
-    
-    .post-body pre {
-        padding: 10px; /* Smaller padding for code blocks */
-        font-size: 0.9em; /* Slightly smaller code font on mobile */
-    }
-    
-    .post-body blockquote {
-        padding: 5px 15px; /* Smaller padding for blockquotes */
-        margin: 15px 0;
-    }
-    
-    /* Blog list responsive adjustments */
-    .blog-list-item {
-        margin-bottom: 30px;
-        padding-bottom: 15px;
-    }
-    
-    .blog-list-item h2 {
-        font-size: 1.6em;
-    }
-    
-    .page-title {
-        font-size: 2.2em;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-    }
 
-    /* Blog Post Specific Adjustments for 768px */
-    main.post-page { /* Assuming a class 'post-page' is added to main on blog post pages */
-        padding: 20px 15px; /* More T/B, 15px L/R */
-        max-width: 100%; /* Allow content to use full width */
-    }
-
-    /* New rules to zero out nested padding within main.post-page */
-    main.post-page article.post,
-    main.post-page .post-content {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .post-title {
-        font-size: 1.8em; /* Slightly smaller title */
-        overflow-wrap: break-word; /* Add word wrapping */
-        word-wrap: break-word; /* Alias for older browsers */
-    }
-
-    .post-body {
-        font-size: 0.95em; /* Slightly smaller body text */
-    }
-
-    .post-body p { /* Add word wrapping for paragraphs */
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-    }
-
-    .post-body h2 {
-        font-size: 1.5em;
-    }
-
-    .post-body h3 {
-        font-size: 1.3em;
-    }
-
-    /* Simplified styling for images and preformatted text */
-    .post-body img,
-    .post-body pre {
-        margin-left: 0; 
-        margin-right: 0;
-        max-width: 100%; 
-        /* border-radius: 0; REMOVED - let default apply or inherit */
-    }
-
-    .post-body img {
-      max-width: 100%; /* Ensure images don't overflow their container */
-      height: auto; /* Maintain aspect ratio */
-      margin-left: auto; /* Center images if they are smaller than container */
-      margin-right: auto;
-      display: block;
-    }
-}
 
 /* Even smaller screens */
 @media (max-width: 480px) {
@@ -849,9 +728,9 @@ div.timeline > h2:first-of-type {
 .tag {
     background-color: #F0EBE0;
     color: #795548;
-    font-size: 0.8em;
+    font-size: 1em; /* Increased from 0.8em to match date/time font size effectively */
     padding: 3px 8px;
-    margin-right: 8px;
+    /* margin-right: 8px; Removed as parent .post-tags uses gap */
     border-radius: 12px;
     font-weight: normal;
     font-style: normal;
@@ -863,6 +742,132 @@ div.timeline > h2:first-of-type {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 15px;
+}
+
+/* Responsive adjustments for blog */
+@media (max-width: 768px) {
+    .post-title {
+        font-size: 2em;
+    }
+    
+    .post-body h2 {
+        font-size: 1.6em;
+    }
+    
+    .post-body h3 {
+        font-size: 1.3em;
+    }
+    
+    /* Additional mobile-specific adjustments */
+    .post-content {
+        padding: 0 10px; /* Reduce padding on mobile */
+    }
+    
+    .post-header {
+        margin-bottom: 20px; /* Less margin on mobile */
+        padding-bottom: 10px;
+    }
+    
+    .post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        font-size: 0.9em;
+        row-gap: 5px; /* Reduced from 8px for tighter spacing */
+    }
+    
+    .post-reading-time {
+        margin-left: 8px;    /* Space between date and reading time */
+    }
+    
+    .post-tags {
+        flex-basis: 100%;
+        margin-left: 0;
+        margin-top: 0; /* Rely on parent .post-meta's row-gap for spacing */
+    }
+    
+    .post-body {
+        line-height: 1.6; /* Slightly reduced line height for mobile */
+    }
+    
+    .post-body pre {
+        padding: 10px; /* Smaller padding for code blocks */
+        font-size: 0.9em; /* Slightly smaller code font on mobile */
+    }
+    
+    .post-body blockquote {
+        padding: 5px 15px; /* Smaller padding for blockquotes */
+        margin: 15px 0;
+    }
+    
+    /* Blog list responsive adjustments */
+    .blog-list-item {
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+    }
+    
+    .blog-list-item h2 {
+        font-size: 1.6em;
+    }
+    
+    .page-title {
+        font-size: 2.2em;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+
+    /* Blog Post Specific Adjustments for 768px */
+    main.post-page { /* Assuming a class 'post-page' is added to main on blog post pages */
+        padding: 20px 15px; /* More T/B, 15px L/R */
+        max-width: 100%; /* Allow content to use full width */
+    }
+
+    /* New rules to zero out nested padding within main.post-page */
+    main.post-page article.post,
+    main.post-page .post-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .post-title {
+        font-size: 1.8em; /* Slightly smaller title */
+        overflow-wrap: break-word; /* Add word wrapping */
+        word-wrap: break-word; /* Alias for older browsers */
+    }
+
+    .post-body {
+        font-size: 0.95em; /* Slightly smaller body text */
+    }
+
+    .post-body p { /* Add word wrapping for paragraphs */
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    .post-body h2 {
+        font-size: 1.5em;
+    }
+
+    .post-body h3 {
+        font-size: 1.3em;
+    }
+
+    /* Simplified styling for images and preformatted text */
+    .post-body img,
+    .post-body pre {
+        margin-left: 0; 
+        margin-right: 0;
+        max-width: 100%; 
+        /* border-radius: 0; REMOVED - let default apply or inherit */
+    }
+
+    .post-body img {
+      max-width: 100%; /* Ensure images don't overflow their container */
+      height: auto; /* Maintain aspect ratio */
+      margin-left: auto; /* Center images if they are smaller than container */
+      margin-right: auto;
+      display: block;
+    }
 }
 
 @media (max-width: 768px) {
