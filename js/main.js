@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const cursorSpan = document.querySelector('.typed-cursor');
 
     if (typedTextSpan && cursorSpan) {
-        const textArray = ["Software Engineer", "Teacher", "Human", "INFJ", "STEM '19", "Penn '23", "Rarely Shuts Up", "ex-Perfectionist"];
+        const textArray = ["Software Engineer", "Teacher", "Human", "STEM '19", "Penn '23", "Product Manager..?", "Education..?", "ex-Perfectionist"];
         const typingDelay = 100;
         const erasingDelay = 50;
         const newTextDelay = 2000; // Delay before starting to type next text

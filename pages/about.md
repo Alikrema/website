@@ -7,8 +7,7 @@ permalink: /lore/index.html
 <div class="bio-section">
     <div class="bio-section__text">
         <h2>My Lore</h2>
-        <p class="caption-text"><em>Scroll if you just wanna judge by career and tech work</em></p>
-        <p>My life has followed a typical "gifted child" trajectory. I come from a working class family in Cairo, Egypt, was top of my class for years, and then joined a <strong> top-notch, cut-throat, hyphenated-adjective high school (STEM Schools) that led to an even-more-hyphenated-cutter-throat college (UPenn)</strong>, which lead to many challenges and self-exploration along the way. Soon enough, I learned the hard way that not all my childhood wiring — perfectionism, seeking external validation, etc. — was my real identity. And I've been trying to figure it out ever since.
+        <p>Rediscovering myself, brb.</p>
 
 Activities that bring me joy in life in no certain order:
 
@@ -16,8 +15,7 @@ Activities that bring me joy in life in no certain order:
 - Coding
 - Cooking
 - Making Content (written/YT)
-- Anything football-related
-- Not writing CSS</p>
+- Anything football-related</p>
 </div>
 <div class="bio-section__image-container">
 {% image "assets/img/me-2.png", "A picture of me" %}
@@ -54,6 +52,15 @@ Activities that bring me joy in life in no certain order:
 ## Experience & Ventures
 
 <div class="timeline">
+    {{ timelineItem(
+        "July 2025 – Present",
+        "Product Engineer @ <a href=\"https://borderless.so\">Borderless</a>",
+        "<p>Building the AI platform for college admissions.</p>",
+        "",
+        "",
+        ""
+    ) }}
+
     {{ timelineItem(
         "July 2023 – May 2025",
         "Software Engineer @ <a href=\"https://www.aydi.com\">Aydi</a>",
