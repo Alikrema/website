@@ -63,7 +63,8 @@ permalink: index.html
         min-height: 100vh;
         min-height: 100svh;
         margin: 0;
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: auto;
         color: var(--cream);
         background: var(--night);
         font-family: "Press Start 2P", ui-monospace, monospace;
@@ -129,7 +130,7 @@ permalink: index.html
         place-items: center;
         min-height: 100vh;
         min-height: 100svh;
-        padding: clamp(14px, 2.2vw, 28px);
+        padding: clamp(28px, 4vw, 52px);
       }
 
       .game-window {
@@ -137,7 +138,8 @@ permalink: index.html
         display: grid;
         grid-template-rows: auto 1fr auto;
         width: min(1240px, 100%);
-        min-height: min(790px, calc(100svh - 40px));
+        min-height: min(790px, calc(100svh - clamp(78px, 8vw, 112px)));
+        margin: 0 12px 12px 0;
         overflow: hidden;
         border: 5px solid var(--ink);
         background: rgba(8, 11, 23, 0.92);
@@ -382,7 +384,7 @@ permalink: index.html
 
       .link-menu {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: 12px;
         width: 100%;
         max-width: 670px;
@@ -405,10 +407,11 @@ permalink: index.html
         text-decoration: none;
         text-transform: uppercase;
         transition: none;
+        grid-column: span 2;
       }
 
       .pixel-link--primary {
-        grid-column: 1 / -1;
+        grid-column: span 6;
         justify-content: flex-start;
         min-height: 62px;
         padding-inline: 20px;
@@ -421,6 +424,12 @@ permalink: index.html
         margin-left: auto;
         color: var(--ink);
         content: ">>";
+      }
+
+      .pixel-link--feature {
+        grid-column: span 3;
+        color: var(--paper);
+        background: var(--blue);
       }
 
       .pixel-link:hover,
@@ -495,11 +504,12 @@ permalink: index.html
 
         .page-shell {
           display: block;
-          padding: 14px;
+          padding: 22px;
         }
 
         .game-window {
-          min-height: calc(100svh - 28px);
+          min-height: calc(100svh - 58px);
+          margin: 0 10px 12px 0;
         }
 
         .game-screen {
@@ -593,7 +603,9 @@ permalink: index.html
           grid-template-columns: 1fr;
         }
 
-        .pixel-link--primary {
+        .pixel-link,
+        .pixel-link--primary,
+        .pixel-link--feature {
           grid-column: auto;
         }
 
@@ -655,7 +667,7 @@ permalink: index.html
               <span class="prompt">&gt;</span>
               <span class="role-word" data-role>Engineer</span>
             </div>
-            <p class="sr-only">Engineer, Product, Builder, Thinker</p>
+            <p class="sr-only">Engineer, Product, Builder, Thinker, Content Creator, Psychology Enthusiast</p>
 
             <p class="education">STEM Oct '19 <span>/</span> UPenn '23</p>
 
@@ -664,6 +676,8 @@ permalink: index.html
               <a class="pixel-link pixel-link--primary" href="https://borderless.so/" target="_blank" rel="noreferrer">
                 Building Borderless
               </a>
+              <a class="pixel-link pixel-link--feature" href="/blog/">Blog</a>
+              <a class="pixel-link pixel-link--feature" href="/contact/">Contact Me</a>
               <a class="pixel-link" href="https://www.instagram.com/alikrema2.0/" target="_blank" rel="noreferrer">Instagram</a>
               <a class="pixel-link" href="https://www.linkedin.com/in/ali-krema/" target="_blank" rel="noreferrer">LinkedIn</a>
               <a class="pixel-link" href="https://github.com/Alikrema" target="_blank" rel="noreferrer">GitHub</a>
@@ -682,7 +696,14 @@ permalink: index.html
       (() => {
         const role = document.querySelector("[data-role]");
         const links = Array.from(document.querySelectorAll(".pixel-link"));
-        const roles = ["Engineer", "Product", "Builder", "Thinker"];
+        const roles = [
+          "Engineer",
+          "Product",
+          "Builder",
+          "Thinker",
+          "(Content?) Creator",
+          "Psychology Enthusiast",
+        ];
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
         let roleIndex = 0;
         let roleTimer;
