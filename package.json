@@ -1,24 +1,17 @@
 {
-  "name": "portfolio",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "ali-krema",
+  "version": "2.0.0",
+  "private": true,
+  "description": "The personal site of Ali Krema.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "optimize-hero-images": "node .eleventy.img.config.js",
-    "build": "npm run optimize-hero-images && npx @11ty/eleventy",
-    "build:dev": "npm run optimize-hero-images && npx @11ty/eleventy --serve"
+    "build": "eleventy",
+    "build:sites": "npm run build && node scripts/build-sites.mjs",
+    "dev": "eleventy --serve",
+    "test": "npm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "Ali Krema",
+  "license": "UNLICENSED",
   "dependencies": {
     "@11ty/eleventy": "^3.1.0"
-  },
-  "devDependencies": {
-    "@11ty/eleventy-img": "^6.0.4",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1",
-    "eleventy-plugin-reading-time": "^0.0.1",
-    "luxon": "^3.6.1"
   }
 }

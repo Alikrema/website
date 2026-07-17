@@ -1,16 +1,553 @@
 ---
-title: Ali Krema
-layout: base.njk
+permalink: index.html
 ---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#030507" />
+    <meta
+      name="description"
+      content="Ali Krema — Engineer, Product, Builder, Thinker. Building Borderless."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ali Krema" />
+    <meta
+      property="og:description"
+      content="Engineer · Product · Builder · Thinker"
+    />
+    <meta property="og:url" content="https://www.alikrema.com/" />
+    <meta property="og:site_name" content="Ali Krema" />
+    <meta property="og:image" content="https://www.alikrema.com/og.jpg" />
+    <meta property="og:image:alt" content="Ali Krema — Engineer, Product, Builder, Thinker" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ali Krema" />
+    <meta
+      name="twitter:description"
+      content="Engineer · Product · Builder · Thinker"
+    />
+    <meta name="twitter:image" content="https://www.alikrema.com/og.jpg" />
+    <meta name="twitter:image:alt" content="Ali Krema — Engineer, Product, Builder, Thinker" />
+    <title>Ali Krema — Engineer, Product, Builder, Thinker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #030507;
+        --bg-soft: #071017;
+        --fg: #f4f7fa;
+        --muted: rgba(229, 237, 244, 0.58);
+        --edge: rgba(216, 236, 247, 0.14);
+        --cyan: #77e7ff;
+        --mint: #8cf7ce;
+        --pink: #ff66c8;
+        --mouse-x: 50vw;
+        --mouse-y: 50vh;
+        --frame: clamp(12px, 2vw, 24px);
+        --pad: clamp(32px, 5vw, 72px);
+      }
 
-<div class="landing-hero">
-    <div class="hero-content-wrapper">
-        <div class="hero-text">
-            <h1>Ali Krema</h1> 
-            <p id="job-title-typed-container"><span id="job-title-typed"></span><span class="typed-cursor"></span></p>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        min-width: 320px;
+        min-height: 100%;
+        background: var(--bg);
+      }
+
+      body {
+        min-height: 100vh;
+        min-height: 100svh;
+        margin: 0;
+        overflow: hidden;
+        color: var(--fg);
+        background:
+          radial-gradient(circle at 18% 14%, rgba(53, 122, 153, 0.19), transparent 32%),
+          radial-gradient(circle at 82% 2%, rgba(20, 101, 129, 0.15), transparent 26%),
+          linear-gradient(180deg, #020304 0%, var(--bg-soft) 52%, var(--bg) 100%);
+        font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        isolation: isolate;
+      }
+
+      ::selection {
+        color: #030507;
+        background: var(--mint);
+      }
+
+      .atmosphere,
+      .grid,
+      .noise,
+      .scan,
+      .frame {
+        position: fixed;
+        pointer-events: none;
+      }
+
+      .atmosphere {
+        inset: 0;
+        z-index: -4;
+        background:
+          radial-gradient(circle 25rem at var(--mouse-x) var(--mouse-y), rgba(119, 231, 255, 0.085), transparent 72%),
+          radial-gradient(circle 36rem at var(--mouse-x) var(--mouse-y), rgba(140, 247, 206, 0.04), transparent 76%);
+        transition: opacity 220ms ease;
+      }
+
+      .grid {
+        inset: 0;
+        z-index: -3;
+        background-image:
+          linear-gradient(rgba(139, 176, 199, 0.105) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(139, 176, 199, 0.105) 1px, transparent 1px),
+          linear-gradient(rgba(139, 176, 199, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(139, 176, 199, 0.04) 1px, transparent 1px);
+        background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+        mask-image: radial-gradient(circle at center, #000 0%, #000 58%, transparent 96%);
+        opacity: 0.72;
+      }
+
+      .noise {
+        inset: 0;
+        z-index: 8;
+        opacity: 0.1;
+        background-image:
+          repeating-radial-gradient(circle at 13% 17%, rgba(255, 255, 255, 0.12) 0 0.4px, transparent 0.8px 4px),
+          repeating-radial-gradient(circle at 79% 67%, rgba(119, 231, 255, 0.09) 0 0.35px, transparent 0.7px 5px);
+        background-size: 7px 9px, 11px 13px;
+        mix-blend-mode: screen;
+      }
+
+      .scan {
+        inset: -20% 0;
+        z-index: -2;
+        opacity: 0.3;
+        background: linear-gradient(180deg, transparent 45%, rgba(119, 231, 255, 0.055) 50%, transparent 55%);
+        animation: scan 9s linear infinite;
+      }
+
+      .frame {
+        inset: var(--frame);
+        z-index: 7;
+        border: 1px solid var(--edge);
+      }
+
+      .frame::before,
+      .frame::after {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        content: "";
+      }
+
+      .frame::before {
+        top: -1px;
+        left: -1px;
+        border-top: 1px solid rgba(244, 247, 250, 0.48);
+        border-left: 1px solid rgba(244, 247, 250, 0.48);
+      }
+
+      .frame::after {
+        right: -1px;
+        bottom: -1px;
+        border-right: 1px solid rgba(244, 247, 250, 0.48);
+        border-bottom: 1px solid rgba(244, 247, 250, 0.48);
+      }
+
+      .shell {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: min(100%, 1440px);
+        min-height: 100vh;
+        min-height: 100svh;
+        margin: 0 auto;
+        padding: var(--pad);
+      }
+
+      .topbar,
+      .bottombar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        min-height: 22px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .topbar {
+        justify-content: flex-end;
+      }
+
+      .edge-link,
+      .socials a {
+        position: relative;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 180ms ease, transform 180ms ease;
+      }
+
+      .edge-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .edge-link::before {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--mint);
+        box-shadow: 0 0 16px rgba(140, 247, 206, 0.72);
+        content: "";
+      }
+
+      .edge-link:hover,
+      .edge-link:focus-visible,
+      .socials a:hover,
+      .socials a:focus-visible {
+        color: var(--fg);
+        outline: none;
+        transform: translateY(-1px);
+      }
+
+      .hero {
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        min-width: 0;
+        padding: clamp(48px, 8vh, 112px) 0;
+        text-align: center;
+      }
+
+      .identity {
+        position: relative;
+        display: grid;
+        justify-items: center;
+        width: min(100%, 1100px);
+      }
+
+      .identity::before,
+      .identity::after {
+        position: absolute;
+        top: 50%;
+        width: clamp(24px, 8vw, 132px);
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(119, 231, 255, 0.38));
+        content: "";
+      }
+
+      .identity::before {
+        right: calc(100% + clamp(16px, 3vw, 44px));
+      }
+
+      .identity::after {
+        left: calc(100% + clamp(16px, 3vw, 44px));
+        transform: rotate(180deg);
+      }
+
+      h1 {
+        position: relative;
+        margin: 0;
+        font-size: clamp(4.2rem, 13.2vw, 12rem);
+        font-weight: 800;
+        letter-spacing: -0.085em;
+        line-height: 0.78;
+        text-transform: uppercase;
+        text-wrap: balance;
+        filter: drop-shadow(0 0 48px rgba(119, 231, 255, 0.12));
+      }
+
+      h1::before,
+      h1::after {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        color: transparent;
+        content: attr(data-text);
+        opacity: 0.42;
+        -webkit-text-stroke: 1px currentColor;
+      }
+
+      h1::before {
+        color: var(--cyan);
+        transform: translate(-2px, 1px);
+        clip-path: inset(0 0 53% 0);
+      }
+
+      h1::after {
+        color: var(--pink);
+        transform: translate(2px, -1px);
+        clip-path: inset(54% 0 0 0);
+      }
+
+      .first-name,
+      .last-name {
+        display: inline-block;
+      }
+
+      .last-name {
+        color: rgba(244, 247, 250, 0.92);
+        -webkit-text-stroke: 1px rgba(244, 247, 250, 0.14);
+      }
+
+      .role-window {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: min(92vw, 440px);
+        height: 58px;
+        margin-top: clamp(32px, 5vw, 64px);
+        overflow: hidden;
+        border-top: 1px solid rgba(216, 236, 247, 0.14);
+        border-bottom: 1px solid rgba(216, 236, 247, 0.14);
+        perspective: 700px;
+      }
+
+      .role-window::before,
+      .role-window::after {
+        position: absolute;
+        top: 50%;
+        width: 42px;
+        height: 1px;
+        background: rgba(119, 231, 255, 0.34);
+        content: "";
+      }
+
+      .role-window::before {
+        left: 0;
+      }
+
+      .role-window::after {
+        right: 0;
+      }
+
+      .role-word {
+        color: var(--cyan);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: clamp(12px, 1.5vw, 15px);
+        font-weight: 500;
+        letter-spacing: 0.32em;
+        line-height: 1;
+        text-indent: 0.32em;
+        text-transform: uppercase;
+        text-shadow: 0 0 18px rgba(119, 231, 255, 0.38);
+        transform-origin: center;
+        backface-visibility: hidden;
+      }
+
+      .role-word.is-leaving {
+        animation: flip-out 320ms cubic-bezier(0.55, 0, 1, 0.45) forwards;
+      }
+
+      .role-word.is-entering {
+        animation: flip-in 420ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .education {
+        margin: 0;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .education span {
+        color: rgba(119, 231, 255, 0.36);
+      }
+
+      .socials {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+
+      .socials a + a::before {
+        position: absolute;
+        top: 50%;
+        left: -13px;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: rgba(244, 247, 250, 0.34);
+        content: "";
+      }
+
+      @keyframes scan {
+        from { transform: translateY(-36%); }
+        to { transform: translateY(36%); }
+      }
+
+      @keyframes flip-out {
+        from { opacity: 1; transform: rotateX(0deg) translateY(0); filter: blur(0); }
+        to { opacity: 0; transform: rotateX(86deg) translateY(-12px); filter: blur(4px); }
+      }
+
+      @keyframes flip-in {
+        from { opacity: 0; transform: rotateX(-86deg) translateY(12px); filter: blur(4px); }
+        to { opacity: 1; transform: rotateX(0deg) translateY(0); filter: blur(0); }
+      }
+
+      @media (max-width: 680px) {
+        body {
+          overflow-y: auto;
+        }
+
+        .shell {
+          grid-template-rows: auto minmax(480px, 1fr) auto;
+          padding: 34px 30px;
+        }
+
+        .topbar {
+          justify-content: center;
+        }
+
+        .bottombar {
+          flex-direction: column;
+          gap: 18px;
+          padding-bottom: 4px;
+        }
+
+        h1 {
+          display: grid;
+          gap: 0.12em;
+          font-size: clamp(4.4rem, 25vw, 7.25rem);
+          line-height: 0.7;
+        }
+
+        .identity::before,
+        .identity::after {
+          display: none;
+        }
+
+        .role-window {
+          height: 52px;
+          margin-top: 40px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .scan {
+          animation: none;
+          opacity: 0.12;
+        }
+
+        .atmosphere,
+        .edge-link,
+        .socials a,
+        .role-word {
+          transition: none;
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+    <div class="grid" aria-hidden="true"></div>
+    <div class="scan" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="frame" aria-hidden="true"></div>
+
+    <main class="shell">
+      <div class="topbar">
+        <a class="edge-link" href="https://borderless.so/" target="_blank" rel="noreferrer">
+          Building Borderless
+        </a>
+      </div>
+
+      <section class="hero" aria-labelledby="name">
+        <div class="identity">
+          <h1 id="name" data-text="Ali Krema">
+            <span class="first-name">Ali</span>
+            <span class="last-name">Krema</span>
+          </h1>
+
+          <div class="role-window" aria-hidden="true">
+            <span class="role-word" data-role>Engineer</span>
+          </div>
+          <p class="sr-only">Engineer, Product, Builder, Thinker</p>
         </div>
-        <div class="hero-image">
-            <img src="/assets/img/clean.jpeg" alt="Messy me">
-        </div>
-    </div>
-</div>
+      </section>
+
+      <div class="bottombar">
+        <p class="education">STEM Oct '19 <span>/</span> UPenn '23</p>
+        <nav class="socials" aria-label="Social links">
+          <a href="https://www.instagram.com/alikrema2.0/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.linkedin.com/in/ali-krema/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </nav>
+      </div>
+    </main>
+
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const role = document.querySelector("[data-role]");
+        const roles = ["Engineer", "Product", "Builder", "Thinker"];
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        let roleIndex = 0;
+        let roleTimer;
+
+        const updatePointer = (x, y) => {
+          root.style.setProperty("--mouse-x", `${x}px`);
+          root.style.setProperty("--mouse-y", `${y}px`);
+        };
+
+        const rotateRole = () => {
+          if (reducedMotion.matches) return;
+
+          role.classList.remove("is-entering");
+          role.classList.add("is-leaving");
+
+          window.setTimeout(() => {
+            roleIndex = (roleIndex + 1) % roles.length;
+            role.textContent = roles[roleIndex];
+            role.classList.remove("is-leaving");
+            void role.offsetWidth;
+            role.classList.add("is-entering");
+          }, 300);
+        };
+
+        const startRoleRotation = () => {
+          window.clearInterval(roleTimer);
+          if (!reducedMotion.matches) {
+            roleTimer = window.setInterval(rotateRole, 1900);
+          }
+        };
+
+        window.addEventListener("pointermove", (event) => {
+          if (!reducedMotion.matches) updatePointer(event.clientX, event.clientY);
+        }, { passive: true });
+
+        window.addEventListener("pointerleave", () => {
+          updatePointer(window.innerWidth / 2, window.innerHeight / 2);
+        });
+
+        reducedMotion.addEventListener("change", startRoleRotation);
+        startRoleRotation();
+      })();
+    </script>
+  </body>
+</html>
