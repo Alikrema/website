@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080b17" />
+    <meta name="description" content="{{ description or title }}" />
+    <title>{{ title }} — Ali Krema</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=VT323&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/retro-pages.css" />
+  </head>
+  <body>
+    <div class="world" aria-hidden="true"></div>
+    <div class="dither" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <div class="reader-shell">
+      <main class="reader-window">
+        <header class="titlebar">
+          <div class="titlebar-controls" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <a class="window-title" href="/">ALI_KREMA.EXE</a>
+          <span class="window-mode">{{ windowLabel or "LOG_VIEWER" }}</span>
+        </header>
+
+        <section class="reader-panel">
+          <header class="page-heading">
+            <p class="page-kicker">{{ kicker or "Archive / File" }}</p>
+            <h1>{{ title }}</h1>
+            {% if displayDate or readingTime %}
+              <p class="page-meta">
+                {% if displayDate %}<time datetime="{{ machineDate }}">{{ displayDate }}</time>{% endif %}
+                {% if displayDate and readingTime %}<span>/</span>{% endif %}
+                {% if readingTime %}<span>{{ readingTime }}</span>{% endif %}
+              </p>
+            {% endif %}
+            {% if description %}<p class="page-description">{{ description }}</p>{% endif %}
+          </header>
+
+          {% if pageType == "post" %}
+            <article class="post-article">
+              {{ content | safe }}
+            </article>
+          {% else %}
+            <div class="page-content">
+              {{ content | safe }}
+            </div>
+          {% endif %}
+        </section>
+
+        <footer class="reader-nav">
+          <a href="/">[HOME]</a>
+          <a href="/blog/">[BLOG]</a>
+          <a href="/lore/">[LORE]</a>
+          <a href="/contact/">[CONTACT]</a>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

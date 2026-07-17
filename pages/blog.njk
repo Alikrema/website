@@ -1,0 +1,23 @@
+---
+title: Blog
+layout: retro-page.njk
+permalink: /blog/index.html
+windowLabel: SAVE_FILES
+kicker: Archive / Writing
+description: Notes on building, psychology, fear, and whatever else is currently taking up too much RAM.
+---
+
+<div class="post-list">
+  {% for post in collections.post | reverse %}
+    <a class="save-slot" href="{{ post.url }}">
+      <span class="slot-number">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+      <span class="slot-copy">
+        <h2>{{ post.data.title }}</h2>
+        <p>{{ post.data.summary }}</p>
+      </span>
+      <time class="slot-date" datetime="{{ post.data.machineDate }}">{{ post.data.displayDate }}</time>
+    </a>
+  {% else %}
+    <p class="empty-state">NO SAVE FILES FOUND... YET.</p>
+  {% endfor %}
+</div>

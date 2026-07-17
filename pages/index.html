@@ -1,16 +1,812 @@
 ---
-title: Ali Krema
-layout: base.njk
+permalink: index.html
 ---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080b17" />
+    <meta
+      name="description"
+      content="Ali Krema — Engineer, Product, Builder, Thinker. Building Borderless."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ali Krema — Player One" />
+    <meta property="og:description" content="Engineer · Product · Builder · Thinker" />
+    <meta property="og:url" content="https://www.alikrema.com/" />
+    <meta property="og:site_name" content="Ali Krema" />
+    <meta property="og:image" content="https://www.alikrema.com/og-pixel.jpg" />
+    <meta property="og:image:alt" content="Ali Krema in a retro pixel-art world" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ali Krema — Player One" />
+    <meta name="twitter:description" content="Engineer · Product · Builder · Thinker" />
+    <meta name="twitter:image" content="https://www.alikrema.com/og-pixel.jpg" />
+    <meta name="twitter:image:alt" content="Ali Krema in a retro pixel-art world" />
+    <title>Ali Krema — Player One</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=VT323&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #05070e;
+        --night: #080b17;
+        --navy: #11172b;
+        --blue: #1c2c4d;
+        --steel: #2f5575;
+        --cyan: #4fd1c5;
+        --cyan-dark: #247f7b;
+        --gold: #f4c95d;
+        --orange: #dd762f;
+        --cream: #f6e7c1;
+        --paper: #fff8dc;
+        --pink: #e34b87;
+        --pixel: 4px;
+      }
 
-<div class="landing-hero">
-    <div class="hero-content-wrapper">
-        <div class="hero-text">
-            <h1>Ali Krema</h1> 
-            <p id="job-title-typed-container"><span id="job-title-typed"></span><span class="typed-cursor"></span></p>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        min-width: 320px;
+        min-height: 100%;
+        background: var(--ink);
+      }
+
+      body {
+        height: 100vh;
+        height: 100svh;
+        margin: 0;
+        overflow: hidden;
+        color: var(--cream);
+        background: var(--night);
+        font-family: "Press Start 2P", ui-monospace, monospace;
+      }
+
+      img {
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
+      }
+
+      ::selection {
+        color: var(--ink);
+        background: var(--gold);
+      }
+
+      .world,
+      .dither,
+      .scanlines,
+      .vignette {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .world {
+        z-index: -4;
+        background-color: var(--night);
+        background-image: url("/retro-world.png");
+        background-position: center bottom;
+        background-size: cover;
+        image-rendering: pixelated;
+      }
+
+      .dither {
+        z-index: -3;
+        opacity: 0.28;
+        background-image: repeating-conic-gradient(
+          rgba(79, 209, 197, 0.14) 0 25%,
+          transparent 0 50%
+        );
+        background-size: 6px 6px;
+      }
+
+      .scanlines {
+        z-index: 10;
+        opacity: 0.17;
+        background: repeating-linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04) 0,
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+      }
+
+      .vignette {
+        z-index: -2;
+        box-shadow: inset 0 0 140px 38px rgba(2, 3, 8, 0.92);
+      }
+
+      .page-shell {
+        display: grid;
+        place-items: center;
+        height: 100vh;
+        height: 100svh;
+        min-height: 0;
+        padding: clamp(24px, 3vw, 36px);
+      }
+
+      .game-window {
+        position: relative;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: min(1180px, 100%);
+        height: min(760px, calc(100svh - clamp(52px, 6vw, 76px)));
+        min-height: 0;
+        margin: 0;
+        overflow: hidden;
+        border: 5px solid var(--ink);
+        background: rgba(8, 11, 23, 0.92);
+        box-shadow:
+          0 0 0 4px var(--cream),
+          0 0 0 8px var(--ink),
+          12px 12px 0 8px rgba(0, 0, 0, 0.68);
+      }
+
+      .game-window::before,
+      .game-window::after {
+        position: absolute;
+        z-index: 4;
+        width: 24px;
+        height: 24px;
+        background: var(--gold);
+        box-shadow: inset -6px -6px 0 var(--orange);
+        content: "";
+      }
+
+      .game-window::before {
+        top: 70px;
+        left: 0;
+      }
+
+      .game-window::after {
+        right: 0;
+        bottom: 50px;
+      }
+
+      .titlebar {
+        position: relative;
+        z-index: 3;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        min-height: 50px;
+        padding: 10px 16px;
+        border-bottom: 5px solid var(--ink);
+        color: var(--ink);
+        background: var(--cream);
+        font-size: 10px;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .titlebar-controls {
+        display: flex;
+        gap: 8px;
+      }
+
+      .titlebar-controls span {
+        width: 12px;
+        height: 12px;
+        border: 3px solid var(--ink);
+        background: var(--pink);
+        box-shadow: 3px 3px 0 var(--ink);
+      }
+
+      .titlebar-controls span:nth-child(2) {
+        background: var(--gold);
+      }
+
+      .titlebar-controls span:nth-child(3) {
+        background: var(--cyan);
+      }
+
+      .titlebar-name {
+        margin: 0;
+        text-align: center;
+      }
+
+      .titlebar-status {
+        justify-self: end;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .status-light {
+        width: 9px;
+        height: 9px;
+        background: #30e878;
+        box-shadow: 3px 3px 0 var(--ink);
+        animation: blink 1.1s steps(1, end) infinite;
+      }
+
+      .game-screen {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(300px, 0.9fr) minmax(420px, 1.1fr);
+        min-height: 0;
+      }
+
+      .character-deck {
+        position: relative;
+        display: grid;
+        align-items: end;
+        min-height: 0;
+        overflow: hidden;
+        border-right: 5px solid var(--ink);
+        background:
+          linear-gradient(90deg, transparent 49%, rgba(79, 209, 197, 0.13) 49% 51%, transparent 51%),
+          linear-gradient(0deg, var(--navy) 0 18%, rgba(8, 11, 23, 0.72) 18% 100%);
+      }
+
+      .character-deck::before {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        padding: 8px 10px;
+        border: 3px solid var(--cyan);
+        color: var(--cyan);
+        background: var(--ink);
+        font-size: 8px;
+        letter-spacing: 0.08em;
+        content: "PLAYER 01";
+      }
+
+      .character-deck::after {
+        position: absolute;
+        right: 14%;
+        bottom: 10%;
+        left: 14%;
+        height: 18px;
+        border: 4px solid var(--ink);
+        background: var(--cyan-dark);
+        box-shadow:
+          0 8px 0 rgba(0, 0, 0, 0.42),
+          inset 0 5px 0 rgba(79, 209, 197, 0.26);
+        content: "";
+      }
+
+      .character {
+        position: relative;
+        z-index: 2;
+        display: block;
+        width: min(94%, 560px);
+        max-height: 61vh;
+        margin: 0 auto -8px;
+        object-fit: contain;
+        filter: drop-shadow(10px 10px 0 rgba(0, 0, 0, 0.72));
+        transform-origin: bottom center;
+        animation: idle-bob 1.4s steps(2, end) infinite;
+      }
+
+      .info-deck {
+        display: grid;
+        align-content: center;
+        gap: clamp(14px, 2vh, 22px);
+        min-width: 0;
+        padding: clamp(28px, 4vw, 56px);
+        background: rgba(8, 11, 23, 0.78);
+      }
+
+      .save-file {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        margin: 0;
+        padding: 8px 11px;
+        border: 3px solid var(--steel);
+        color: var(--cyan);
+        background: var(--ink);
+        font-family: "VT323", ui-monospace, monospace;
+        font-size: 22px;
+        letter-spacing: 0.08em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--paper);
+        font-size: clamp(2.5rem, 5.6vw, 5.7rem);
+        letter-spacing: -0.07em;
+        line-height: 0.92;
+        text-transform: uppercase;
+        text-shadow:
+          5px 0 0 var(--pink),
+          -5px 0 0 var(--cyan),
+          0 8px 0 var(--ink);
+      }
+
+      .role-console {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 14px;
+        width: min(100%, 520px);
+        min-height: 52px;
+        padding: 10px 14px;
+        border: 4px solid var(--cream);
+        color: var(--gold);
+        background: var(--ink);
+        box-shadow: 7px 7px 0 var(--cyan-dark);
+        font-size: clamp(11px, 1.5vw, 15px);
+        line-height: 1.5;
+      }
+
+      .prompt {
+        color: var(--cyan);
+      }
+
+      .role-word {
+        display: inline-block;
+        transform-origin: left center;
+      }
+
+      .role-word::after {
+        color: var(--paper);
+        content: "_";
+        animation: blink 0.8s steps(1, end) infinite;
+      }
+
+      .role-word.is-swapping {
+        animation: glitch-swap 220ms steps(2, end);
+      }
+
+      .education {
+        margin: 0;
+        color: var(--cream);
+        font-family: "VT323", ui-monospace, monospace;
+        font-size: clamp(25px, 3vw, 38px);
+        letter-spacing: 0.05em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .education span {
+        color: var(--gold);
+      }
+
+      .menu-label {
+        margin: 0 0 -8px;
+        color: var(--cyan);
+        font-size: 8px;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .link-menu {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 10px;
+        width: 100%;
+        max-width: 670px;
+      }
+
+      .pixel-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 10px 8px;
+        border: 4px solid var(--ink);
+        color: var(--ink);
+        background: var(--cream);
+        box-shadow: 6px 6px 0 var(--ink);
+        font-size: clamp(7px, 0.85vw, 10px);
+        line-height: 1.45;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: none;
+        grid-column: span 2;
+      }
+
+      .pixel-link--primary {
+        grid-column: span 6;
+        justify-content: flex-start;
+        min-height: 56px;
+        padding-inline: 18px;
+        color: var(--ink);
+        background: var(--gold);
+        font-size: clamp(9px, 1vw, 12px);
+      }
+
+      .pixel-link--primary::after {
+        margin-left: auto;
+        color: var(--ink);
+        content: ">>";
+      }
+
+      .pixel-link--feature {
+        grid-column: span 2;
+        color: var(--paper);
+        background: var(--blue);
+      }
+
+      .pixel-link:hover,
+      .pixel-link:focus-visible {
+        outline: none;
+        color: var(--paper);
+        background: var(--cyan-dark);
+        transform: translate(4px, 4px);
+        box-shadow: 2px 2px 0 var(--ink);
+      }
+
+      .pixel-link--primary:hover,
+      .pixel-link--primary:focus-visible {
+        color: var(--ink);
+        background: var(--cyan);
+      }
+
+      .hintbar {
+        position: relative;
+        z-index: 3;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 10px 16px;
+        border-top: 5px solid var(--ink);
+        color: var(--cream);
+        background: var(--blue);
+        font-family: "VT323", ui-monospace, monospace;
+        font-size: 21px;
+        letter-spacing: 0.06em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .hintbar span:last-child {
+        color: var(--gold);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @keyframes idle-bob {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+
+      @keyframes blink {
+        0%, 48% { opacity: 1; }
+        49%, 100% { opacity: 0; }
+      }
+
+      @keyframes glitch-swap {
+        0% { opacity: 1; transform: translateX(0); }
+        35% { opacity: 0; transform: translateX(12px); }
+        65% { opacity: 0; transform: translateX(-8px); }
+        100% { opacity: 1; transform: translateX(0); }
+      }
+
+      @media (max-height: 760px) and (min-width: 861px) {
+        .titlebar {
+          min-height: 44px;
+          padding-block: 8px;
+        }
+
+        .character {
+          max-height: 57vh;
+        }
+
+        .info-deck {
+          gap: 11px;
+          padding: 22px 38px;
+        }
+
+        .save-file {
+          padding: 6px 9px;
+          font-size: 19px;
+        }
+
+        h1 {
+          font-size: clamp(2.4rem, 5.2vw, 4.8rem);
+        }
+
+        .role-console {
+          min-height: 46px;
+          padding-block: 8px;
+        }
+
+        .education {
+          font-size: clamp(23px, 2.6vw, 32px);
+        }
+
+        .menu-label {
+          margin-bottom: -4px;
+        }
+
+        .link-menu {
+          gap: 8px;
+        }
+
+        .pixel-link {
+          min-height: 42px;
+          padding-block: 8px;
+        }
+
+        .pixel-link--primary {
+          min-height: 48px;
+        }
+
+        .hintbar {
+          padding-block: 8px;
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 860px) {
+        body {
+          height: auto;
+          min-height: 100svh;
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+
+        .page-shell {
+          display: block;
+          height: auto;
+          min-height: 100svh;
+          padding: 22px;
+        }
+
+        .game-window {
+          height: auto;
+          min-height: calc(100svh - 58px);
+          margin: 0 10px 12px 0;
+        }
+
+        .game-screen {
+          grid-template-columns: 1fr;
+        }
+
+        .character-deck {
+          min-height: 410px;
+          border-right: 0;
+          border-bottom: 5px solid var(--ink);
+        }
+
+        .character {
+          max-height: 400px;
+        }
+
+        .info-deck {
+          padding: 44px 30px 52px;
+        }
+
+        .titlebar {
+          grid-template-columns: auto 1fr auto;
+        }
+
+        .titlebar-name {
+          font-size: 8px;
+        }
+
+        .titlebar-status {
+          font-size: 0;
+        }
+      }
+
+      @media (max-width: 540px) {
+        .game-window {
+          border-width: 4px;
+          box-shadow:
+            0 0 0 3px var(--cream),
+            0 0 0 6px var(--ink),
+            7px 7px 0 6px rgba(0, 0, 0, 0.62);
+        }
+
+        .titlebar {
+          min-height: 44px;
+          padding: 8px 10px;
+        }
+
+        .titlebar-controls span {
+          width: 9px;
+          height: 9px;
+          border-width: 2px;
+          box-shadow: 2px 2px 0 var(--ink);
+        }
+
+        .titlebar-name {
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        .character-deck {
+          min-height: 350px;
+        }
+
+        .character {
+          width: 100%;
+          max-height: 350px;
+        }
+
+        .info-deck {
+          gap: 22px;
+          padding: 36px 20px 44px;
+        }
+
+        h1 {
+          font-size: clamp(2.4rem, 17vw, 4rem);
+          text-shadow:
+            3px 0 0 var(--pink),
+            -3px 0 0 var(--cyan),
+            0 6px 0 var(--ink);
+        }
+
+        .role-console {
+          min-height: 54px;
+          padding: 10px 12px;
+          border-width: 3px;
+          box-shadow: 5px 5px 0 var(--cyan-dark);
+          font-size: 10px;
+        }
+
+        .link-menu {
+          grid-template-columns: 1fr;
+        }
+
+        .pixel-link,
+        .pixel-link--primary,
+        .pixel-link--feature {
+          grid-column: auto;
+        }
+
+        .pixel-link {
+          min-height: 50px;
+          font-size: 8px;
+        }
+
+        .hintbar {
+          font-size: 16px;
+        }
+
+        .hintbar span:first-child {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .character,
+        .role-word,
+        .role-word::after,
+        .status-light {
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="world" aria-hidden="true"></div>
+    <div class="dither" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <main class="page-shell">
+      <section class="game-window" aria-labelledby="name">
+        <header class="titlebar">
+          <div class="titlebar-controls" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <p class="titlebar-name">ALI_KREMA.EXE</p>
+          <span class="titlebar-status"><i class="status-light" aria-hidden="true"></i>ONLINE</span>
+        </header>
+
+        <div class="game-screen">
+          <div class="character-deck">
+            <img
+              class="character"
+              src="/ali-pixel.png"
+              alt="Pixel-art character of Ali Krema wearing glasses and a blue pullover"
+            />
+          </div>
+
+          <div class="info-deck">
+            <p class="save-file">Save File / 01</p>
+
+            <h1 id="name">Ali<br />Krema</h1>
+
+            <div class="role-console" aria-hidden="true">
+              <span class="prompt">&gt;</span>
+              <span class="role-word" data-role>Engineer</span>
+            </div>
+            <p class="sr-only">Engineer, Product, Builder, Founder, Thinker, (Content?) Creator, Psychology Enthusiast</p>
+
+            <p class="education">STEM Oct '19 <span>/</span> UPenn '23</p>
+
+            <p class="menu-label">Select destination</p>
+            <nav class="link-menu" aria-label="Ali Krema links">
+              <a class="pixel-link pixel-link--primary" href="https://borderless.so/" target="_blank" rel="noreferrer">
+                Building Borderless
+              </a>
+              <a class="pixel-link pixel-link--feature" href="/blog/">Blog</a>
+              <a class="pixel-link pixel-link--feature" href="/lore/">Lore</a>
+              <a class="pixel-link pixel-link--feature" href="/contact/">Contact Me</a>
+              <a class="pixel-link" href="https://www.instagram.com/alikrema2.0/" target="_blank" rel="noreferrer">Instagram</a>
+              <a class="pixel-link" href="https://www.linkedin.com/in/ali-krema/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a class="pixel-link" href="https://github.com/Alikrema" target="_blank" rel="noreferrer">GitHub</a>
+            </nav>
+          </div>
         </div>
-        <div class="hero-image">
-            <img src="/assets/img/clean.jpeg" alt="Messy me">
-        </div>
-    </div>
-</div>
+
+        <footer class="hintbar" aria-hidden="true">
+          <span>[TAB] MOVE</span>
+          <span>[ENTER] OPEN</span>
+        </footer>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const role = document.querySelector("[data-role]");
+        const links = Array.from(document.querySelectorAll(".pixel-link"));
+        const roles = [
+          "Engineer",
+          "Product",
+          "Builder",
+          "Founder",
+          "Thinker",
+          "(Content?) Creator",
+          "Psychology Enthusiast",
+        ];
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        let roleIndex = 0;
+        let roleTimer;
+
+        const rotateRole = () => {
+          if (reducedMotion.matches) return;
+
+          role.classList.remove("is-swapping");
+          void role.offsetWidth;
+          role.classList.add("is-swapping");
+
+          window.setTimeout(() => {
+            roleIndex = (roleIndex + 1) % roles.length;
+            role.textContent = roles[roleIndex];
+          }, 105);
+        };
+
+        const startRotation = () => {
+          window.clearInterval(roleTimer);
+          if (!reducedMotion.matches) {
+            roleTimer = window.setInterval(rotateRole, 1650);
+          }
+        };
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+
+          const activeIndex = links.indexOf(document.activeElement);
+          if (activeIndex === -1) return;
+
+          event.preventDefault();
+          const direction = event.key === "ArrowDown" ? 1 : -1;
+          links[(activeIndex + direction + links.length) % links.length].focus();
+        });
+
+        reducedMotion.addEventListener("change", startRotation);
+        startRotation();
+      })();
+    </script>
+  </body>
+</html>
