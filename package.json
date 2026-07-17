@@ -7,7 +7,7 @@
     "build": "eleventy",
     "build:sites": "npm run build && node scripts/build-sites.mjs",
     "dev": "eleventy --serve",
-    "test": "npm run build && node tests/window-viewport.test.mjs"
+    "test": "npm run build && node tests/window-viewport.test.mjs && node tests/reader-window-viewport.test.mjs"
   },
   "author": "Ali Krema",
   "license": "UNLICENSED",

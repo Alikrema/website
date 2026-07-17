@@ -21,15 +21,16 @@
 
 html {
   min-width: 320px;
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
   background: var(--ink);
 }
 
 body {
-  min-height: 100vh;
-  min-height: 100svh;
+  height: 100vh;
+  height: 100svh;
   margin: 0;
-  overflow-x: hidden;
+  overflow: hidden;
   color: var(--cream);
   background: var(--night);
   font-family: "Press Start 2P", ui-monospace, monospace;
@@ -86,14 +87,23 @@ body {
 }
 
 .reader-shell {
+  display: grid;
+  place-items: center;
   width: min(1080px, calc(100% - 48px));
-  min-height: 100vh;
-  min-height: 100svh;
+  height: 100vh;
+  height: 100svh;
+  min-height: 0;
   margin: 0 auto;
-  padding: clamp(42px, 7vw, 84px) 0;
+  padding: clamp(26px, 4vw, 44px) 0;
 }
 
 .reader-window {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: 100%;
+  height: min(880px, calc(100svh - clamp(52px, 8vw, 88px)));
+  min-height: 0;
+  overflow: hidden;
   border: 5px solid var(--ink);
   background: rgba(8, 11, 23, 0.96);
   box-shadow:
@@ -154,8 +164,25 @@ body {
 }
 
 .reader-panel {
-  min-height: 540px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: clamp(36px, 6vw, 72px);
+  scrollbar-color: var(--gold) var(--ink);
+}
+
+.reader-panel::-webkit-scrollbar {
+  width: 16px;
+}
+
+.reader-panel::-webkit-scrollbar-track {
+  border-left: 4px solid var(--ink);
+  background: var(--blue);
+}
+
+.reader-panel::-webkit-scrollbar-thumb {
+  border: 4px solid var(--ink);
+  background: var(--gold);
 }
 
 .page-heading {
@@ -416,7 +443,7 @@ body {
 
 .channel-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -487,7 +514,7 @@ body {
   aspect-ratio: 1;
   border: 4px solid var(--ink);
   object-fit: cover;
-  filter: saturate(0.75) contrast(1.12);
+  image-rendering: pixelated;
 }
 
 .lore-avatar-frame figcaption {
@@ -577,10 +604,10 @@ body {
 .education-logo {
   display: block;
   width: 100%;
-  padding: 12px;
+  padding: 0;
   border: 4px solid var(--ink);
-  background: var(--paper);
-  image-rendering: auto;
+  background: var(--night);
+  image-rendering: pixelated;
 }
 
 .lore-timeline {
@@ -653,7 +680,12 @@ body {
 @media (max-width: 700px) {
   .reader-shell {
     width: min(100% - 34px, 1080px);
-    padding: 28px 0 38px;
+    height: 100svh;
+    padding: 20px 0;
+  }
+
+  .reader-window {
+    height: calc(100svh - 40px);
   }
 
   .reader-window {
@@ -725,6 +757,12 @@ body {
 
   .reader-nav {
     justify-content: center;
+    gap: 10px;
+    padding: 12px 10px;
+  }
+
+  .reader-nav a {
+    font-size: clamp(16px, 5.3vw, 20px);
   }
 }
 
