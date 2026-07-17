@@ -18,15 +18,13 @@ function cssBlock(selector) {
 const body = cssBlock("body");
 const pageShell = cssBlock(".page-shell");
 const gameWindow = cssBlock(".game-window");
-const minimumPadding = Number(pageShell.match(/padding:\s*clamp\((\d+)px/)?.[1]);
-const minimumReserve = Number(gameWindow.match(/calc\(100svh\s*-\s*clamp\((\d+)px/)?.[1]);
+const mobileStyles = source.match(/@media\s*\(max-width:\s*860px\)\s*\{([\s\S]*?)\n\s*\}\n\n\s*@media/)?.[1];
 
-assert.match(body, /overflow-y:\s*auto/, "The page must allow vertical overflow instead of clipping the window footer");
-assert(Number.isFinite(minimumPadding), "The page shell needs an explicit minimum viewport padding");
-assert(Number.isFinite(minimumReserve), "The game window needs an explicit minimum viewport reserve");
-assert(
-  minimumReserve >= (minimumPadding * 2) + 20,
-  `The ${minimumReserve}px viewport reserve is too small for ${minimumPadding}px shell padding plus the pixel frame`,
-);
+assert.match(body, /overflow:\s*hidden/, "The desktop page must not create a viewport scrollbar");
+assert.match(pageShell, /height:\s*100svh/, "The desktop shell must be bounded to one visible viewport");
+assert.match(gameWindow, /height:\s*min\([^;]*calc\(100svh\s*-/, "The game window must fit inside the desktop viewport");
+assert.match(gameWindow, /min-height:\s*0/, "Grid content must be allowed to shrink without growing the game window");
+assert(mobileStyles, "The narrow layout needs an explicit responsive override");
+assert.match(mobileStyles, /body\s*\{[\s\S]*?overflow-y:\s*auto/, "Long mobile content must remain scrollable");
 
 console.log(`window viewport regression passed${gitRef ? ` for ${gitRef}` : ""}`);

@@ -60,11 +60,10 @@ permalink: index.html
       }
 
       body {
-        min-height: 100vh;
-        min-height: 100svh;
+        height: 100vh;
+        height: 100svh;
         margin: 0;
-        overflow-x: hidden;
-        overflow-y: auto;
+        overflow: hidden;
         color: var(--cream);
         background: var(--night);
         font-family: "Press Start 2P", ui-monospace, monospace;
@@ -128,18 +127,20 @@ permalink: index.html
       .page-shell {
         display: grid;
         place-items: center;
-        min-height: 100vh;
-        min-height: 100svh;
-        padding: clamp(28px, 4vw, 52px);
+        height: 100vh;
+        height: 100svh;
+        min-height: 0;
+        padding: clamp(24px, 3vw, 36px);
       }
 
       .game-window {
         position: relative;
         display: grid;
         grid-template-rows: auto 1fr auto;
-        width: min(1240px, 100%);
-        min-height: min(790px, calc(100svh - clamp(78px, 8vw, 112px)));
-        margin: 0 12px 12px 0;
+        width: min(1180px, 100%);
+        height: min(760px, calc(100svh - clamp(52px, 6vw, 76px)));
+        min-height: 0;
+        margin: 0;
         overflow: hidden;
         border: 5px solid var(--ink);
         background: rgba(8, 11, 23, 0.92);
@@ -279,7 +280,7 @@ permalink: index.html
         z-index: 2;
         display: block;
         width: min(94%, 560px);
-        max-height: 66vh;
+        max-height: 61vh;
         margin: 0 auto -8px;
         object-fit: contain;
         filter: drop-shadow(10px 10px 0 rgba(0, 0, 0, 0.72));
@@ -290,9 +291,9 @@ permalink: index.html
       .info-deck {
         display: grid;
         align-content: center;
-        gap: clamp(20px, 3vh, 34px);
+        gap: clamp(14px, 2vh, 22px);
         min-width: 0;
-        padding: clamp(34px, 5vw, 72px);
+        padding: clamp(28px, 4vw, 56px);
         background: rgba(8, 11, 23, 0.78);
       }
 
@@ -315,7 +316,7 @@ permalink: index.html
       h1 {
         margin: 0;
         color: var(--paper);
-        font-size: clamp(2.6rem, 6vw, 6.3rem);
+        font-size: clamp(2.5rem, 5.6vw, 5.7rem);
         letter-spacing: -0.07em;
         line-height: 0.92;
         text-transform: uppercase;
@@ -331,8 +332,8 @@ permalink: index.html
         align-items: center;
         gap: 14px;
         width: min(100%, 520px);
-        min-height: 58px;
-        padding: 12px 16px;
+        min-height: 52px;
+        padding: 10px 14px;
         border: 4px solid var(--cream);
         color: var(--gold);
         background: var(--ink);
@@ -385,7 +386,7 @@ permalink: index.html
       .link-menu {
         display: grid;
         grid-template-columns: repeat(6, minmax(0, 1fr));
-        gap: 12px;
+        gap: 10px;
         width: 100%;
         max-width: 670px;
       }
@@ -395,8 +396,8 @@ permalink: index.html
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 52px;
-        padding: 12px 10px;
+        min-height: 48px;
+        padding: 10px 8px;
         border: 4px solid var(--ink);
         color: var(--ink);
         background: var(--cream);
@@ -413,8 +414,8 @@ permalink: index.html
       .pixel-link--primary {
         grid-column: span 6;
         justify-content: flex-start;
-        min-height: 62px;
-        padding-inline: 20px;
+        min-height: 56px;
+        padding-inline: 18px;
         color: var(--ink);
         background: var(--gold);
         font-size: clamp(9px, 1vw, 12px);
@@ -427,7 +428,7 @@ permalink: index.html
       }
 
       .pixel-link--feature {
-        grid-column: span 3;
+        grid-column: span 2;
         color: var(--paper);
         background: var(--blue);
       }
@@ -453,7 +454,7 @@ permalink: index.html
         display: flex;
         justify-content: space-between;
         gap: 20px;
-        padding: 12px 16px;
+        padding: 10px 16px;
         border-top: 5px solid var(--ink);
         color: var(--cream);
         background: var(--blue);
@@ -497,17 +498,79 @@ permalink: index.html
         100% { opacity: 1; transform: translateX(0); }
       }
 
+      @media (max-height: 760px) and (min-width: 861px) {
+        .titlebar {
+          min-height: 44px;
+          padding-block: 8px;
+        }
+
+        .character {
+          max-height: 57vh;
+        }
+
+        .info-deck {
+          gap: 11px;
+          padding: 22px 38px;
+        }
+
+        .save-file {
+          padding: 6px 9px;
+          font-size: 19px;
+        }
+
+        h1 {
+          font-size: clamp(2.4rem, 5.2vw, 4.8rem);
+        }
+
+        .role-console {
+          min-height: 46px;
+          padding-block: 8px;
+        }
+
+        .education {
+          font-size: clamp(23px, 2.6vw, 32px);
+        }
+
+        .menu-label {
+          margin-bottom: -4px;
+        }
+
+        .link-menu {
+          gap: 8px;
+        }
+
+        .pixel-link {
+          min-height: 42px;
+          padding-block: 8px;
+        }
+
+        .pixel-link--primary {
+          min-height: 48px;
+        }
+
+        .hintbar {
+          padding-block: 8px;
+          font-size: 18px;
+        }
+      }
+
       @media (max-width: 860px) {
         body {
+          height: auto;
+          min-height: 100svh;
+          overflow-x: hidden;
           overflow-y: auto;
         }
 
         .page-shell {
           display: block;
+          height: auto;
+          min-height: 100svh;
           padding: 22px;
         }
 
         .game-window {
+          height: auto;
           min-height: calc(100svh - 58px);
           margin: 0 10px 12px 0;
         }
@@ -667,7 +730,7 @@ permalink: index.html
               <span class="prompt">&gt;</span>
               <span class="role-word" data-role>Engineer</span>
             </div>
-            <p class="sr-only">Engineer, Product, Builder, Thinker, Content Creator, Psychology Enthusiast</p>
+            <p class="sr-only">Engineer, Product, Builder, Founder, Thinker, (Content?) Creator, Psychology Enthusiast</p>
 
             <p class="education">STEM Oct '19 <span>/</span> UPenn '23</p>
 
@@ -677,6 +740,7 @@ permalink: index.html
                 Building Borderless
               </a>
               <a class="pixel-link pixel-link--feature" href="/blog/">Blog</a>
+              <a class="pixel-link pixel-link--feature" href="/lore/">Lore</a>
               <a class="pixel-link pixel-link--feature" href="/contact/">Contact Me</a>
               <a class="pixel-link" href="https://www.instagram.com/alikrema2.0/" target="_blank" rel="noreferrer">Instagram</a>
               <a class="pixel-link" href="https://www.linkedin.com/in/ali-krema/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -700,6 +764,7 @@ permalink: index.html
           "Engineer",
           "Product",
           "Builder",
+          "Founder",
           "Thinker",
           "(Content?) Creator",
           "Psychology Enthusiast",
