@@ -1,23 +1,37 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 
 const page = await readFile("_site/index.html", "utf8");
-const socialImage = (await readFile("_site/og.jpg")).toString("base64");
+const assetSources = {
+  "/ali-pixel.png": {
+    contentType: "image/png",
+    data: (await readFile("_site/ali-pixel.png")).toString("base64"),
+  },
+  "/og-pixel.jpg": {
+    contentType: "image/jpeg",
+    data: (await readFile("_site/og-pixel.jpg")).toString("base64"),
+  },
+  "/retro-world.png": {
+    contentType: "image/png",
+    data: (await readFile("_site/retro-world.png")).toString("base64"),
+  },
+};
 const worker = `
 const page = ${JSON.stringify(page)};
-const socialImageBase64 = ${JSON.stringify(socialImage)};
-let socialImage;
+const assetSources = ${JSON.stringify(assetSources)};
+const assetCache = new Map();
 
-function getSocialImage() {
-  if (socialImage) return socialImage;
+function getAsset(pathname) {
+  if (assetCache.has(pathname)) return assetCache.get(pathname);
 
-  const binary = atob(socialImageBase64);
-  socialImage = new Uint8Array(binary.length);
+  const binary = atob(assetSources[pathname].data);
+  const bytes = new Uint8Array(binary.length);
 
   for (let index = 0; index < binary.length; index += 1) {
-    socialImage[index] = binary.charCodeAt(index);
+    bytes[index] = binary.charCodeAt(index);
   }
 
-  return socialImage;
+  assetCache.set(pathname, bytes);
+  return bytes;
 }
 
 export default {
@@ -36,11 +50,13 @@ export default {
       });
     }
 
-    if (url.pathname === "/og.jpg") {
-      return new Response(isHead ? null : getSocialImage(), {
+    const asset = assetSources[url.pathname];
+
+    if (asset) {
+      return new Response(isHead ? null : getAsset(url.pathname), {
         headers: {
           "cache-control": "public, max-age=604800, immutable",
-          "content-type": "image/jpeg",
+          "content-type": asset.contentType,
           "x-content-type-options": "nosniff",
         },
       });
